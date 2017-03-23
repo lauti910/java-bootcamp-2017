@@ -11,11 +11,11 @@ exercises**
 
 # Material
 
-#JAVA Boot Camp
+# JAVA Boot Camp
 
-###Are you ready for it?
+### Are you ready for it?
   
-####Index
+#### Index
 
 1. [Objective](#objective)
 
@@ -35,7 +35,7 @@ exercises**
 
 9. [Learning Days](#learning-days)
 
-    * [Topic 0: Introduction to Object Oriented Programming Concepts (OOP)](#topic-0-introduction-to-object-oriented-programming-concepts-2-days)
+    * [Topic 0: Introduction to Object Oriented Programming Concepts (OOP)](# topic-0-introduction-to-object-oriented-programming-concepts-2-days)
 
     * [Topic 1: Maven](#topic-1-maven-1-day)
 
@@ -51,13 +51,13 @@ exercises**
 
 10. [Your First Project Starts Now!](#your-first-project-starts-now)
 
-###Objective
+### Objective
 
 This course teaches the basics of Java development applications.
 
 → [index](#index)
 
-###Who Should Attend
+### Who Should Attend
 
 The training will start at a low level and does not require in depth knowledge of the platform in question. Desirable participant profile: trainees and outside Globant candidates. A basic knowledge on OOP is desired, though.
 
