@@ -1,0 +1,5 @@
+package Clase1.AbstractFactory;
+
+public class ConnectionA {
+
+}

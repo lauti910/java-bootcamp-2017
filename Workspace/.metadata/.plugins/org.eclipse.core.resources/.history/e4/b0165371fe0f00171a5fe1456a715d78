@@ -1,0 +1,15 @@
+package Clase1.AbstractFactory;
+
+public class ConnectionFactoryProducer extends AbstractDBConnectionFactory{
+
+	@Override
+	ConnectionFactoryA getConnectionFactoryA() {
+		return new ConnectionFactoryA(); 
+	}
+
+	@Override
+	ConnectionFactoryB getConnectionFactoryB() {
+		return new ConnectionFactoryB();
+	}
+
+}

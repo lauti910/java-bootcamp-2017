@@ -1,0 +1,15 @@
+package Clase1.AbstractFactory;
+
+public class ConnectionFactoryA extends AbstractDBConnectionFactory{
+
+	@Override
+	ConnectionA getConnectionA() {
+		return new ConnectionA();
+	}
+
+	@Override
+	ConnectionB getConnectionB() {
+		throw new Exception("I Dont create ConnectionB");
+	}
+
+}
