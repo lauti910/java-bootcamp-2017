@@ -35,7 +35,7 @@ exercises**
 
 9. [Learning Days](#learning-days)
 
-    * [Topic 0: Introduction to Object Oriented Programming Concepts (OOP)](# topic-0-introduction-to-object-oriented-programming-concepts-2-days)
+    * [Topic 0: Introduction to Object Oriented Programming Concepts (OOP)](#topic-0-introduction-to-object-oriented-programming-concepts-2-days)
 
     * [Topic 1: Maven](#topic-1-maven-1-day)
 
@@ -250,7 +250,7 @@ Commit your practice code.
 → [index](#index)
 
 
-#### Topic 3: Services (2 days)####
+#### Topic 3: Services (2 days) ####
 
 ##### Reading: #####
 1. [How to create services in Java](http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/)
