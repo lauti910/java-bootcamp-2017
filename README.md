@@ -100,7 +100,7 @@ Developers that move faster than average can go ahead and complete as much exerc
 
 4. Create your own [GitHub](https://github.com/) account. Follow this [guideline](https://help.github.com/articles/set-up-git) to setup your account. Also you can read further about Git in [Try Git](https://try.github.io/levels/1/challenges/1) or [Learn Git Branching](http://pcottle.github.io/learnGitBranching/)
 
-5. Fork this repo https://github.com/juanpablopizarro/java-bootcamp-2016 to use as a base to host the project code. Read [this](https://help.github.com/articles/fork-a-repo/) for instructions.
+5. Fork this repo https://github.com/ilanrosenfeld7/java-bootcamp-2017 to use as a base to host the project code. Read [this](https://help.github.com/articles/fork-a-repo/) for instructions.
 
 → [index](#index)
 
@@ -116,7 +116,7 @@ The boot camp is organized in the following way:
 
 3. One boot camp chat will be created for feedback and technical assistance:
 
-    Bootcamp JAVA 2016 - ALL
+    Bootcamp JAVA 2017 - ALL
 Every person participating in the bootcamp is present here (students and tutors). Here is the place to ask for technical assistance!
 
 4. [Team play](http://www.dummies.com/how-to/content/ten-qualities-of-an-effective-team-player.html) is encouraged but the work will be evaluated per person.
