@@ -1,0 +1,18 @@
+package Clase1;
+
+public class DBConnection {
+	
+	private static DBConector instance = null;
+	private DBConnection() {
+	}
+	static public DBConector getInstance(){
+		if(instance == null){
+			instance = new DBConector();
+		}
+		return instance;
+	}
+	
+	public void getConnection(){
+		//Should return a connection with a database
+	}
+}

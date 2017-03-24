@@ -1,0 +1,5 @@
+package Clase1.Singleton;
+
+public class Connection {
+
+}

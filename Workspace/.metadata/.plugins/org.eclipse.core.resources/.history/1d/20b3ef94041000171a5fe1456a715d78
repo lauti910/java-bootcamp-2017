@@ -1,0 +1,10 @@
+package Clase1.Proxy;
+
+public class ProxyDAO {
+	private DatabaseAccesor realDao;
+	
+	public String getSomethingFromDatabase(){
+		realDao = new DatabaseAccesor();
+		return realDao.getSomethingFromDatabase();
+	}
+}

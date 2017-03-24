@@ -1,0 +1,11 @@
+package Clase1.Proxy;
+
+import Clase1.Singleton.DBConector;
+
+public class ProxyDatabaseAccesor {
+	private DBConector conector;
+	
+	public void getSomethingFromDatabase(){
+		conector.getConnection();
+	}
+}

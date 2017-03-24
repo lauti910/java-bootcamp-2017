@@ -1,0 +1,9 @@
+package Clase1.Singleton;
+
+public class Connection {
+
+	public void get(Class class, int i) {
+		//gets the object of the class 'class' and identity i
+	}
+ //represents a connection with the database
+}
