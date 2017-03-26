@@ -1,6 +1,7 @@
 package Clase1.AbstractFactory;
 
+import Clase1.AbstractFactory.Connections.Connection;
+
 public abstract class AbstractDBConnectionFactory {
-	abstract ConnectionA getConnectionA();
-	abstract ConnectionB getConnectionB();
+	abstract Connection getConnection(String type);
 }
