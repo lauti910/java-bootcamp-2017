@@ -1,7 +1,0 @@
-package Clase1.AbstractFactory;
-
-public abstract class AbstractDBConnectionFactory {
-	abstract ConnectionFactoryA getConnectionFactoryA(); //should return an object that can return a connection with a database
-	abstract ConnectionFactoryB getConnectionFactoryB(); //should return an object that can return another type of connection with a database
-	
-}

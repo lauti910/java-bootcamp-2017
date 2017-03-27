@@ -1,8 +1,0 @@
-package Clase1.Proxy;
-
-public class ProxyDatabaseAccesor {
-	
-	public void getSomethingFromDatabase(){
-		
-	}
-}

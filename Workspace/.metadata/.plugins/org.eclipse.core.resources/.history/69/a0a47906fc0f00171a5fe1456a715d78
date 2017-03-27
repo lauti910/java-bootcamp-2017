@@ -1,7 +1,0 @@
-package Clase1;
-
-public class AbstractFactoryExample {
-	public AbstractFactoryExample() {
-		// TODO Auto-generated constructor stub
-	}
-}

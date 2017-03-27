@@ -1,5 +1,0 @@
-package Clase1.Singleton;
-
-public class Connection {
- //represents a connection with the database
-}
