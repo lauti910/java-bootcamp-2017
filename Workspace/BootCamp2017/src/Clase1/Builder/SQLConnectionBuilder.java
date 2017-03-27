@@ -1,6 +1,6 @@
 package Clase1.Builder;
 
-import Clase1.Singleton.Connection;
+import Clase1.Singleton.DBConnection;
 
 public class SQLConnectionBuilder implements DBConnectionBuilder{
 	
@@ -18,9 +18,9 @@ public class SQLConnectionBuilder implements DBConnectionBuilder{
 	}
 
 	@Override
-	public Connection getConnection() {
+	public DBConnection getConnection() {
 		//returns the connection
-		return new Connection();
+		return DBConnection.getInstance();
 	}
 
 }
