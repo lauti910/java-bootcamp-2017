@@ -1,7 +1,5 @@
 package Clase1.Challenge2.Operations;
 
-import Clase1.Challenge2.Database;
-import Clase1.Challenge2.Result;
 
 public class Select extends Operation{
 
