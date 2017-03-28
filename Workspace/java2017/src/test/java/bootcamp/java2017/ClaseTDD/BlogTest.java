@@ -29,5 +29,21 @@ public class BlogTest {
 		assert(this.blog.amountOfEntrys() == 1);
 		assertEquals(e1, this.blog.getEntry(0));
 	}
+	@Test
+	public void test_YouCanDeleteEntrys(){
+		Entry e1 = new Entry("Hi");
+		Entry e2 = new Entry("Hello");
+		this.blog.addEntry(e1);
+		this.blog.addEntry(e2);
+		
+		assert(this.blog.amountOfEntrys() == 2);
+		
+		this.blog.removeEntry(e1);
+		
+		assert(this.blog.amountOfEntrys() == 1);
+		assertEquals(e2, this.blog.getEntry(0));
+		
+		
+	}
 
 }

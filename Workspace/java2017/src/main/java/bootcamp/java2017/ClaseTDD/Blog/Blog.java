@@ -21,5 +21,9 @@ public class Blog {
 		//Precondition: i < entrys.size
 		return this.entrys.get(i);
 	}
+	public void removeEntry(Entry entry) {
+		this.entrys.remove(entry);
+		
+	}
 
 }
