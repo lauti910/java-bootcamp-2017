@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import bootcamp.java2017.ClaseTDD.RecentFileList.File;
+import bootcamp.java2017.ClaseTDD.RecentFileList.RecentFileList;
+
 public class RecentFileListTest {
 	/*  
      * When the program is run for the first time, the list is empty.
