@@ -255,6 +255,10 @@ Commit your practice code.
 
 Commit your practice code.
 
+##### Recommended lecture: #####
+
+[Java Generic types](https://docs.oracle.com/javase/tutorial/java/generics/types.html)
+
 → [index](#index)
 
 
