@@ -5,13 +5,13 @@ import java.util.List;
 
 import bootcamp.java2017.ClaseTDD.Blog.Entry;
 
-public class RecentList<Element> {
+public class RecentList<T> {
 	
-	private List<Element> recentFiles;
+	private List<T> recentFiles;
 	private Integer maxSize;
 	
 	public RecentList(Integer maxSize){
-		this.recentFiles = new ArrayList<Element>();
+		this.recentFiles = new ArrayList<T>();
 		this.maxSize = maxSize;
 	}
 	
@@ -19,25 +19,25 @@ public class RecentList<Element> {
 		return this.recentFiles.size();
 	}
 
-	public void add(Element file) {
-		if(this.recentFiles.contains(file)){
+	public void add(T type) {
+		if(this.recentFiles.contains(type)){
 			//if the file already exist, i remove it, so i can put it in the first position afterwards
-			this.recentFiles.remove(file);
+			this.recentFiles.remove(type);
 		}else{
 			if(this.recentFiles.size() == this.maxSize){
 				//if the list is full, i remove the last element
 				this.recentFiles.remove(14);
 			}
 		}
-		this.recentFiles.add(0,file);
+		this.recentFiles.add(0,type);
 	}
 
-	public Element getFile(Integer index) {
+	public T getFile(Integer index) {
 		//Precondition: index < maxSize
 		return this.recentFiles.get(index);
 	}
 
-	public List<Element> getList() {
+	public List<T> getList() {
 		return this.recentFiles;
 	}
 

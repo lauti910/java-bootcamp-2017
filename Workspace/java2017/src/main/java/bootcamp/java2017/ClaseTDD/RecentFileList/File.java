@@ -3,8 +3,8 @@ package bootcamp.java2017.ClaseTDD.RecentFileList;
 
 public class File{
 	
-	RecentList observer;
-	public File(RecentList rfList) {
+	RecentList<File> observer;
+	public File(RecentList<File> rfList) {
 		this.observer = rfList;
 	}
 	public void open() {
