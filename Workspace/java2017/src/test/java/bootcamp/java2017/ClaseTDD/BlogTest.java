@@ -16,12 +16,12 @@ import bootcamp.java2017.ClaseTDD.RecentFileList.RecentList;
 public class BlogTest {
 
 	private Blog blog;
-	private RecentList<Entry> rl;
+	private RecentList<Entry> mockRecentList;
 	
 	@Before
 	public void setUp(){
-		this.rl = Mockito.mock(RecentList.class);
-		this.blog = new Blog(rl);
+		this.mockRecentList = Mockito.mock(RecentList.class);
+		this.blog = new Blog(mockRecentList);
 		
 	}
 	
@@ -53,44 +53,20 @@ public class BlogTest {
 		
 	}
 	@Test
-	public void test_ShowThe10MostRecentEntrys(){
+	public void test_ShowTheMostRecentEntrys(){
 		Entry e1 = new Entry("");
 		Entry e2 = new Entry("");
-		Entry e3 = new Entry("");
-		Entry e4 = new Entry("");
-		Entry e5 = new Entry("");
-		Entry e6 = new Entry("");
-		Entry e7 = new Entry("");
-		Entry e8 = new Entry("");
-		Entry e9 = new Entry("");
-		Entry e10 = new Entry("");
-		Entry e11 = new Entry("this one should remove the e1 from the recent list");
+		Entry e3 = new Entry("this one should remove e1 from the recent list");
 
 		this.blog.addEntry(e1);
 		this.blog.addEntry(e2);
 		this.blog.addEntry(e3);
-		this.blog.addEntry(e4);
-		this.blog.addEntry(e5);
-		this.blog.addEntry(e6);
-		this.blog.addEntry(e7);
-		this.blog.addEntry(e8);
-		this.blog.addEntry(e9);
-		this.blog.addEntry(e10);
-		this.blog.addEntry(e11);
 		
 		List<Entry> expected = new ArrayList<Entry>();
 		expected.add(e2);
 		expected.add(e3);
-		expected.add(e4);
-		expected.add(e5);
-		expected.add(e6);
-		expected.add(e7);
-		expected.add(e8);
-		expected.add(e9);
-		expected.add(e10);
-		expected.add(e11);
 		
-		Mockito.when(this.rl.getList()).thenReturn(expected);
+		Mockito.when(this.mockRecentList.getList()).thenReturn(expected);
 		assertEquals(expected, this.blog.getRecentEntrys());
 		
 	}
