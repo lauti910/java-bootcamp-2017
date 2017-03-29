@@ -20,7 +20,7 @@ public class Blog {
 
 	public void addEntry(Entry entry) {
 		this.entrys.add(entry);
-		this.recentEntrys.add(entry);
+		this.recentEntrys.open(entry);
 	}
 	public Entry getEntry(Integer i) {
 		//Precondition: i < entrys.size

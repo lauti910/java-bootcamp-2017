@@ -19,17 +19,21 @@ public class RecentList<T> {
 		return this.recentFiles.size();
 	}
 
-	public void add(T type) {
+	public void open(T type) {
 		if(this.recentFiles.contains(type)){
 			//if the file already exist, i remove it, so i can put it in the first position afterwards
 			this.recentFiles.remove(type);
 		}else{
-			if(this.recentFiles.size() == this.maxSize){
+			if(this.recentFiles.size() == this.getMaxSize()){
 				//if the list is full, i remove the last element
-				this.recentFiles.remove(14);
+				this.recentFiles.remove(this.getMaxSize() -1);
 			}
 		}
 		this.recentFiles.add(0,type);
+	}
+
+	public Integer getMaxSize() {
+		return this.maxSize;
 	}
 
 	public T getFile(Integer index) {

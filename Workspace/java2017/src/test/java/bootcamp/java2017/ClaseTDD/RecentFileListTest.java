@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import bootcamp.java2017.ClaseTDD.RecentFileList.File;
 import bootcamp.java2017.ClaseTDD.RecentFileList.RecentList;
@@ -27,60 +28,37 @@ public class RecentFileListTest {
 	}
 	@Test
 	public void test_WhenAFileIsOpenedIsAddedToTheRecentFileList(){
-		File f1 = new File(rList);
-		f1.open();
+		File f1 = new File();
+		this.rList.open(f1);
 		assert(rList.getSize() == 1);
 	}
 	@Test
 	public void test_IfAnOpenedFileAlreadyExistInTheRecentFileList_ItIsBumpedToTheTop_WithoutDuplicatingIt(){
-		File f1 = new File(rList);
-		File f2 = new File(rList);
-		f1.open();
-		f2.open();
-		f1.open();
+		File f1 = new File();
+		File f2 = new File();
+		this.rList.open(f1);
+		this.rList.open(f2);
+		this.rList.open(f1);
+		
 		assertEquals(f1, rList.getFile(0));
 		assert(rList.getSize() == 2);
 	}
 	@Test
-	public void test_IfTheListIsFull_At15_WhenYouOpenAFile_TheLastFileIsRemoved(){
-		File f1 = new File(rList);
-		File f2 = new File(rList);
-		File f3 = new File(rList);
-		File f4 = new File(rList);
-		File f5 = new File(rList);
-		File f6 = new File(rList);
-		File f7 = new File(rList);
-		File f8 = new File(rList);
-		File f9 = new File(rList);
-		File f10 = new File(rList);
-		File f11 = new File(rList);
-		File f12 = new File(rList);
-		File f13 = new File(rList);
-		File f14 = new File(rList);
-		File f15 = new File(rList);
-		File f16 = new File(rList);
+	public void test_IfTheListIsFull_WhenYouOpenAFile_TheLastFileIsRemoved(){
+		File f1 = new File();
+		File f2 = new File();
+		File f3 = new File();
 		
-		f1.open();
-		f2.open();
-		f3.open();
-		f4.open();
-		f5.open();
-		f6.open();
-		f7.open();
-		f8.open();
-		f9.open();
-		f10.open();
-		f11.open();
-		f12.open();
-		f13.open();
-		f14.open();
-		f15.open();
+		RecentList<File> spyList = Mockito.spy(this.rList);
+		Mockito.doReturn(2).when(spyList).getMaxSize();
 		
-		f16.open(); //should remove f1 from the list
+		spyList.open(f1);
+		spyList.open(f2);
+		spyList.open(f3); //should remove f1 from the list
 		
-		assertEquals(rList.getFile(0), f16); //the first is f16
-		assertEquals(rList.getFile(14), f2); //the second is f2
-		assert(rList.getSize() == 15); //the size is the maxSize
+		assertEquals(spyList.getFile(0), f3); //the first is f3
+		assertEquals(spyList.getFile(1), f2); //the last is f2
+		assertEquals(spyList.getSize(), spyList.getMaxSize()); //the size is the maxSize, which is 2
 	}
 
 }
