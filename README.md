@@ -257,11 +257,11 @@ Commit your practice code.
 
 ##### Recommended lecture: #####
 
-[Java Generic types](https://docs.oracle.com/javase/tutorial/java/generics/types.html)
+1. [Java Generic types](https://docs.oracle.com/javase/tutorial/java/generics/types.html)
 
-[Java Collections](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
+2. [Java Collections](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
 
-[Unit and Integration Testing](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
+3. [Unit and Integration Testing](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
 
 → [index](#index)
 
@@ -269,13 +269,13 @@ Commit your practice code.
 #### Topic 3: Services (2 days) ####
 
 ##### Reading: #####
-0. [What is an API?](https://www.youtube.com/watch?v=s7wmiS2mSXY)
+1. [What is an API?](https://www.youtube.com/watch?v=s7wmiS2mSXY)
 
-1. [How to create services in Java](http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/)
+2. [How to create services in Java](http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/)
 
-2. [How to design a good API and why it matters](https://www.youtube.com/watch?v=aAb7hSCtvGw)
+3. [How to design a good API and why it matters](https://www.youtube.com/watch?v=aAb7hSCtvGw)
 
-3. [Web Services Presentation](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
+4. [Web Services](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
 
 ##### Practice: #####
 
