@@ -289,7 +289,56 @@ Note: Do not implement JPA or ORM. Services should return in memory data only.
 
 ##### Key Points: #####
 
-2,4,7
+2,4
+
+##### Commit: #####
+
+Commit your practice code.
+
+##### Challenges!! Mixing Dessign Patterns and Services (These will serve you for the Final Project!) #####
+
+1. Create a ShoppingCart where a user can buy different items and then decide how to pay them:
+ 
+     * by Credit Card: where a Name and a Credit Number is required.
+
+     * by Paypal: where an email and a password is needed.
+
+     * Cash: no information is required.
+
+2. Add the following discount depending on the payment type
+
+     * 10% by Credit Card.
+
+     * The cheapest item is for free when the user pay by Paypal.
+
+     * 90% of the most expensive item is free if the user pays by Cash.
+
+3. Create a counter to provide unique sequential numbers and use it to set an identification to each payment transaction.
+
+4. Add functionality to display information about the list of items. The item should be displayed as:
+
+     * Item Name ....... $ price
+
+5. Add an offer that includes other individual items or other offers. Take into account that when an offer is displayed, it should say:
+
+
+     * Offer Name ....... $ price
+
+       - Item Name ...... $ price
+
+6. Add a mailist List where the market manager is notified when:
+    
+     * A new item/offer is added
+
+     * A price is changed
+
+     * A new transaction was made
+
+7. Audio Player: Modelate an application for listening music. You can play, stop and pause tracks.
+
+##### Key Points: #####
+
+1,2,3,4,5,6,7
 
 ##### Commit: #####
 
