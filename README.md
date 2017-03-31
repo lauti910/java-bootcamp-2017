@@ -279,6 +279,8 @@ Commit your practice code.
 
 5. [Services - Project Architecture](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
 
+6. [Patterns of Enterprise Application Architecture](https://pdfs.semanticscholar.org/7de2/0692c774798016e06d2eb0ade959c61df350.pdf)
+
 ##### Practice: #####
 
 1. Create a shopping cart API spec
