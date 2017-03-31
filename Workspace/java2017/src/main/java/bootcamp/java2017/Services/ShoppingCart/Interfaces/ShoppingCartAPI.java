@@ -1,4 +1,8 @@
-package bootcamp.java2017.Services.ShoppingCart;
+package bootcamp.java2017.Services.ShoppingCart.Interfaces;
+
+import bootcamp.java2017.Services.ShoppingCart.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Exceptions.ItemNotFoundException;
+import bootcamp.java2017.Services.ShoppingCart.Exceptions.NotEnoughMoneyException;
 
 public interface ShoppingCartAPI {
 	
@@ -6,8 +10,8 @@ public interface ShoppingCartAPI {
 	public void addItem(Item item);
 	
 	//Removes an item from the cart
-	//Throws an exception when you try to remove an item that isnt there
-	public void removeItem(Item item) throws ItemNotFoundExeption;
+	//Throws an exception when you try to remove an item that isn't there
+	public void removeItem(Item item) throws ItemNotFoundException;
 	
 	//Returns the price of all the items in the cart, without discounts
 	public Double getTotalPrice();
@@ -25,7 +29,7 @@ public interface ShoppingCartAPI {
 	
 	//Pay for the items through a form of payment
 	//Throws an exception when there isn't enough money to pay for the items you want
-	public void pay() throws NotEnoughMoneyExeption;
+	public void pay() throws NotEnoughMoneyException;
 	
 	
 }

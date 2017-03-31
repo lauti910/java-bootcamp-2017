@@ -3,8 +3,6 @@ package bootcamp.java2017.ClaseTDD.RecentFileList;
 import java.util.ArrayList;
 import java.util.List;
 
-import bootcamp.java2017.ClaseTDD.Blog.Entry;
-
 public class RecentList<T> {
 	
 	private List<T> recentFiles;
