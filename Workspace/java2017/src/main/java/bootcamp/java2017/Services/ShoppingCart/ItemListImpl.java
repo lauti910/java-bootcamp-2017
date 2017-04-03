@@ -1,5 +1,7 @@
 package bootcamp.java2017.Services.ShoppingCart;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
@@ -28,6 +30,18 @@ public class ItemListImpl implements ItemList {
 	@Override
 	public Boolean isEmpty() {
 		return this.items.isEmpty();
+	}
+
+	@Override
+	public Item getCheapestItem() {
+		Collections.sort(this.items, (i1, i2) -> i1.getPrice().compareTo(i2.getPrice()));
+		return this.items.get(0);
+	}
+
+	@Override
+	public Item mostExpensiveItem() {
+		Collections.sort(this.items, (i1, i2) -> i1.getPrice().compareTo(i2.getPrice()));
+		return this.items.get(this.items.size() - 1);
 	}
 
 }

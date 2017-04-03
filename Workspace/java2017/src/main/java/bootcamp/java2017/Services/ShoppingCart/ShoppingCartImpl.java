@@ -1,20 +1,27 @@
 package bootcamp.java2017.Services.ShoppingCart;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import bootcamp.java2017.Services.ShoppingCart.Exceptions.ItemNotFoundException;
-import bootcamp.java2017.Services.ShoppingCart.Exceptions.NotEnoughMoneyException;
+import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
+import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.Services.ShoppingCart.Interfaces.FormOfPayment;
 import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
 import bootcamp.java2017.Services.ShoppingCart.Interfaces.ShoppingCartAPI;
+import bootcamp.java2017.Services.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.Services.UserService.User;
 
 public class ShoppingCartImpl implements ShoppingCartAPI {
 
-	List<Item> items;
+	private List<Item> items;
+	private FormOfPayment payment;
 
 	public ShoppingCartImpl() {
 		this.items = new ArrayList<Item>();
+		this.payment = new CashPayment();
 	}
 
 	@Override
@@ -43,13 +50,20 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 
 	@Override
 	public Double getActualPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		Double total = this.getTotalPrice();
+		List<Offer> applyableOffers =  new OffersDAOImpl().getOffersList().stream()
+										.filter(offer -> offer.canBeApplied(this.getItems()))
+										.collect(Collectors.toList());
+		Double amountSavedWithOffers = 0.0;
+		for(Offer offer: applyableOffers){
+			amountSavedWithOffers += offer.getPrice();
+		}
+		return total - amountSavedWithOffers;
 	}
 
 	@Override
 	public void setFormOfPayment(FormOfPayment payment) {
-		// TODO Auto-generated method stub
+		this.payment = payment;
 
 	}
 
@@ -59,8 +73,10 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public void pay() throws NotEnoughMoneyException {
-		// TODO Auto-generated method stub
+	public void pay(User user) throws NotEnoughMoneyException {
+		this.payment.pay(user, this.getActualPrice(), this.getItems());
+		
+		this.items.clear();
 
 	}
 

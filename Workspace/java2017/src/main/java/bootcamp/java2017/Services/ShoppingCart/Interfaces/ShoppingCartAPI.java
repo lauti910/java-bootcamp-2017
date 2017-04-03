@@ -1,8 +1,9 @@
 package bootcamp.java2017.Services.ShoppingCart.Interfaces;
 
+import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
+import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.Services.ShoppingCart.ItemList;
-import bootcamp.java2017.Services.ShoppingCart.Exceptions.ItemNotFoundException;
-import bootcamp.java2017.Services.ShoppingCart.Exceptions.NotEnoughMoneyException;
+import bootcamp.java2017.Services.UserService.User;
 
 public interface ShoppingCartAPI {
 	
@@ -29,7 +30,7 @@ public interface ShoppingCartAPI {
 	
 	//Pay for the items through a form of payment
 	//Throws an exception when there isn't enough money to pay for the items you want
-	public void pay() throws NotEnoughMoneyException;
+	public void pay(User user) throws NotEnoughMoneyException;
 	
 	
 }

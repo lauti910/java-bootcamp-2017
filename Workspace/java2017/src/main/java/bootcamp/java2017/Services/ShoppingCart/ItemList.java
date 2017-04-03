@@ -9,5 +9,9 @@ public interface ItemList {
 	public void show();
 	
 	public Boolean isEmpty();
+
+	public Item getCheapestItem();
+
+	public Item mostExpensiveItem();
 	
 }
