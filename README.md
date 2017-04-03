@@ -279,6 +279,8 @@ Commit your practice code.
 
 5. [Services - Project Architecture](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
 
+6. [Patterns of Enterprise Application Architecture - Martin Fowler](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
+
 ##### Practice: #####
 
 1. Create a shopping cart API spec
@@ -354,6 +356,8 @@ Commit your practice code.
 
 2. [Jdbc basis](http://www.vogella.com/tutorials/MySQLJava/article.html#jdbc)
 
+3. [JDBC](https://github.com/ilanrosenfeld7/java-bootcamp-2017/tree/master/Extra%20Material)
+
 ##### Extra documentation: #####
 
 1. [Optimizaciones en MySql](http://www.arsys.info/programacion/bases-de-datos/como-optimizar-bases-de-datos-mysql/)
@@ -369,7 +373,7 @@ Do not solve the practice using JDBC, please just send us the sql scripts.
    - Course: name, assigned teacher, hours by week, schedule time (they can be dictated several times during the week)
 
    Notes:
-   - An student can assist several courses during the same year.
+   - A student can assist several courses during the same year.
    - A teacher can be assigned to several courses.
    - For each course, each student has 3 partial notes and a final note.
    - Create all relationship that you think they are required.
