@@ -1,10 +1,8 @@
-package bootcamp.java2017.Services.ShoppingCart;
+package bootcamp.java2017.Services.ShoppingCart.Offers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.OffersDAO;
 
 public class OffersDAOImpl implements OffersDAO {
 

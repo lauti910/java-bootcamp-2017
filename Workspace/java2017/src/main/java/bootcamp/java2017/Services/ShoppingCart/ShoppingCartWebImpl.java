@@ -7,50 +7,50 @@ import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
 import bootcamp.java2017.Services.UserService.User;
 
-public class ShoppingCartProxy implements ShoppingCartAPI{
+public class ShoppingCartWebImpl implements ShoppingCartAPI {
 	
-	private ShoppingCartAPI implementation;
-
-	public ShoppingCartProxy(ShoppingCartAPI implementation){
-		this.implementation = implementation;
+	ShoppingCartAPI web;
+	
+	public ShoppingCartWebImpl() {
+		//TODO: web = something to connect to the web api
 	}
 
 	@Override
 	public void addItem(Item item) {
-		this.implementation.addItem(item);
+		this.web.addItem(item);
 		
 	}
 
 	@Override
 	public void removeItem(Item item) throws ItemNotFoundException {
-		this.implementation.removeItem(item);
+		this.web.removeItem(item);
 		
 	}
 
 	@Override
 	public Double getTotalPrice() {
-		return this.implementation.getTotalPrice();
+		return this.web.getTotalPrice();
 	}
 
 	@Override
 	public Double getActualPrice() {
-		return this.implementation.getActualPrice();
+		return this.web.getActualPrice();
 	}
 
 	@Override
 	public void setFormOfPayment(FormOfPayment payment) {
-		this.implementation.setFormOfPayment(payment);
+		this.web.setFormOfPayment(payment);
 		
 	}
 
 	@Override
 	public ItemList getItems() {
-		return this.implementation.getItems();
+		return this.web.getItems();
 	}
 
 	@Override
 	public void pay(User user) throws NotEnoughMoneyException {
-		this.implementation.pay(user);
+		this.web.pay(user);
 	}
 
 }

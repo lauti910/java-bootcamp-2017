@@ -1,8 +1,6 @@
-package bootcamp.java2017.Services.ShoppingCart.Interfaces;
+package bootcamp.java2017.Services.ShoppingCart.Offers;
 
 import java.util.List;
-
-import bootcamp.java2017.Services.ShoppingCart.Offer;
 
 public interface OffersDAO {
 	public void save(Offer offer);

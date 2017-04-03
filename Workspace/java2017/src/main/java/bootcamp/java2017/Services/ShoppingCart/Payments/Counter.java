@@ -1,4 +1,4 @@
-package bootcamp.java2017.Services.ShoppingCart;
+package bootcamp.java2017.Services.ShoppingCart.Payments;
 
 public class Counter {
 	

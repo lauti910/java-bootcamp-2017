@@ -1,4 +1,4 @@
-package bootcamp.java2017.Services.ShoppingCart.Interfaces;
+package bootcamp.java2017.Services.ShoppingCart.Items;
 
 public interface Item {
 	

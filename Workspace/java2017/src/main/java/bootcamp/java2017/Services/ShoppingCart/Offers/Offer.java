@@ -1,8 +1,9 @@
-package bootcamp.java2017.Services.ShoppingCart;
+package bootcamp.java2017.Services.ShoppingCart.Offers;
 
 import java.util.List;
 
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
+import bootcamp.java2017.Services.ShoppingCart.Items.Item;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
 
 public class Offer {
 	

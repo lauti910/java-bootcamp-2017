@@ -8,12 +8,12 @@ import org.mockito.Mockito;
 
 import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.Services.ShoppingCart.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.ShoppingCartAPI;
 import bootcamp.java2017.Services.ShoppingCart.ShoppingCartImpl;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.FormOfPayment;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.ShoppingCartAPI;
+import bootcamp.java2017.Services.ShoppingCart.Items.Item;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.Services.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
 import bootcamp.java2017.Services.ShoppingCart.Payments.PayPalPayment;
 import bootcamp.java2017.Services.UserService.User;
 

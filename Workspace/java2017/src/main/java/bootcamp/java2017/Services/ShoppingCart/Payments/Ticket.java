@@ -1,7 +1,6 @@
 package bootcamp.java2017.Services.ShoppingCart.Payments;
 
-import bootcamp.java2017.Services.ShoppingCart.Counter;
-import bootcamp.java2017.Services.ShoppingCart.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
 
 public class Ticket {
 	

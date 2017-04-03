@@ -1,8 +1,10 @@
-package bootcamp.java2017.Services.ShoppingCart.Interfaces;
+package bootcamp.java2017.Services.ShoppingCart;
 
 import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.Services.ShoppingCart.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Items.Item;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
 import bootcamp.java2017.Services.UserService.User;
 
 public interface ShoppingCartAPI {

@@ -1,10 +1,8 @@
-package bootcamp.java2017.Services.ShoppingCart;
+package bootcamp.java2017.Services.ShoppingCart.Items;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
 
 public class ItemListImpl implements ItemList {
 	

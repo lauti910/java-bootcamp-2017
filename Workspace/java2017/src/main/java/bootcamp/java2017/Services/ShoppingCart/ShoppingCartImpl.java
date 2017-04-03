@@ -8,10 +8,13 @@ import java.util.stream.Stream;
 
 import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.FormOfPayment;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.Item;
-import bootcamp.java2017.Services.ShoppingCart.Interfaces.ShoppingCartAPI;
+import bootcamp.java2017.Services.ShoppingCart.Items.Item;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Items.ItemListImpl;
+import bootcamp.java2017.Services.ShoppingCart.Offers.Offer;
+import bootcamp.java2017.Services.ShoppingCart.Offers.OffersDAOImpl;
 import bootcamp.java2017.Services.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
 import bootcamp.java2017.Services.UserService.User;
 
 public class ShoppingCartImpl implements ShoppingCartAPI {
