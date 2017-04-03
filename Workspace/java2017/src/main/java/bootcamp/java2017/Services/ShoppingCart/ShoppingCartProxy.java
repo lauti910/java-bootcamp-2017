@@ -5,6 +5,7 @@ import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.Services.ShoppingCart.Items.Item;
 import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.Ticket;
 import bootcamp.java2017.Services.UserService.User;
 
 public class ShoppingCartProxy implements ShoppingCartAPI{
@@ -49,8 +50,8 @@ public class ShoppingCartProxy implements ShoppingCartAPI{
 	}
 
 	@Override
-	public void pay(User user) throws NotEnoughMoneyException {
-		this.implementation.pay(user);
+	public Ticket pay(User user) throws NotEnoughMoneyException {
+		return this.implementation.pay(user);
 	}
 
 }

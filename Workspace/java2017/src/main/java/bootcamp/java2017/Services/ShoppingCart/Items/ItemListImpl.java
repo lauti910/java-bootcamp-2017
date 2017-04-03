@@ -37,7 +37,7 @@ public class ItemListImpl implements ItemList {
 	}
 
 	@Override
-	public Item mostExpensiveItem() {
+	public Item getMostExpensiveItem() {
 		Collections.sort(this.items, (i1, i2) -> i1.getPrice().compareTo(i2.getPrice()));
 		return this.items.get(this.items.size() - 1);
 	}

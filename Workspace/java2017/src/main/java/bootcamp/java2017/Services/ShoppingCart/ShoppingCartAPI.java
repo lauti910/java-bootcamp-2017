@@ -4,35 +4,74 @@ import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.Services.ShoppingCart.Items.Item;
 import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.Services.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.CreditCardPayment;
 import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.PayPalPayment;
+import bootcamp.java2017.Services.ShoppingCart.Payments.Ticket;
 import bootcamp.java2017.Services.UserService.User;
 
 public interface ShoppingCartAPI {
-	
-	//Adds an item to the cart
+	/**
+	 * Adds an item to the cart
+	 * 
+	 * @param item
+	 *            the item that will be added to the cart
+	 * @see Item
+	 */
 	public void addItem(Item item);
-	
-	//Removes an item from the cart
-	//Throws an exception when you try to remove an item that isn't there
+
+	/**
+	 * Removes an item from the cart and throws an exception when you try to
+	 * remove an item that isnt there
+	 * 
+	 * @param item
+	 * @throws ItemNotFoundException
+	 * @see Item
+	 */
 	public void removeItem(Item item) throws ItemNotFoundException;
-	
-	//Returns the price of all the items in the cart, without discounts
+
+	/**
+	 * @return the price of all the items without discounts
+	 */
 	public Double getTotalPrice();
-	
-	//Returns the price of all the items in the cart, including discounts
+
+	/**
+	 * @return the price of all the items with discounts and offers
+	 */
 	public Double getActualPrice();
-	
-	//Sets the form of payment to pay afterwards
-	//Should be a default form in case no-one is selected
+
+	/**
+	 * Sets the form of payment to use to pay. Default is cash
+	 * 
+	 * @param payment
+	 *            the form of payment to be used
+	 * @see FormOfPayment
+	 * @see CashPayment
+	 * @see PayPalPayment
+	 * @see CreditCardPayment
+	 */
 	public void setFormOfPayment(FormOfPayment payment);
-	
-	//Returns the list of items added to the cart.
-	//The ItemList shouldn't be modifiable
+
+	/**
+	 * @return a list of items that isn't modifiable
+	 * @see ItemList
+	 */
 	public ItemList getItems();
-	
-	//Pay for the items through a form of payment
-	//Throws an exception when there isn't enough money to pay for the items you want
-	public void pay(User user) throws NotEnoughMoneyException;
-	
-	
+
+	/**
+	 * Pay for all the items you have in the cart
+	 * 
+	 * @param user
+	 *            The user who pays
+	 * @return a ticket with the information of the transaction
+	 * @throws NotEnoughMoneyException
+	 *             in case there is not enough money in the user accounts for
+	 *             his items
+	 * @see User
+	 * @see FormOfPayment
+	 * @see Ticket
+	 */
+	public Ticket pay(User user) throws NotEnoughMoneyException;
+
 }

@@ -57,7 +57,7 @@ public class FormsOfPaymentTest {
 	@Test
 	public void test_WhenYouPayThroughCash_NothingIsNeeded() throws NotEnoughMoneyException {
 		Item item = Mockito.mock(Item.class);
-		Mockito.doReturn(item).when(this.mockList).mostExpensiveItem();
+		Mockito.doReturn(item).when(this.mockList).getMostExpensiveItem();
 		Mockito.doReturn(0.0).when(item).getPrice();
 		this.cash.pay(this.user, 0.0, this.mockList);
 
@@ -82,7 +82,7 @@ public class FormsOfPaymentTest {
 	@Test 
 	public void test_thereIs90PercentDiscountInTheMostExpensiveItemThroughCash() throws NotEnoughMoneyException{
 		Item item = Mockito.mock(Item.class);
-		Mockito.doReturn(item).when(this.mockList).mostExpensiveItem();
+		Mockito.doReturn(item).when(this.mockList).getMostExpensiveItem();
 		Mockito.doReturn(100.0).when(item).getPrice();
 		Ticket ticket = this.cash.pay(this.user, 100.0, this.mockList);
 		
