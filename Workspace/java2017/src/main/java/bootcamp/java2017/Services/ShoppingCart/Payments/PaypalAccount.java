@@ -9,7 +9,7 @@ public class PaypalAccount {
 	public PaypalAccount(String email, String pass) {
 		// TODO: paypal.signIn(email,pass)
 		// this.money = paypal.getMoney()
-		this.money = 0.0;
+		this.money =100.0;
 	}
 
 	public void spend(Double money) throws NotEnoughMoneyException {

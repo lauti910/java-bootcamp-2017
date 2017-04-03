@@ -27,4 +27,8 @@ public class Ticket {
 		System.out.println("Actual price " + this.actualPrice);
 		System.out.println("Unique transaction Id: " + this.identificator);
 	}
+
+	public Double getActualPrice() {
+		return this.actualPrice;
+	}
 }
