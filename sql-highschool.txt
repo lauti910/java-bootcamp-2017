@@ -19,10 +19,11 @@ CREATE TABLE Course (
 						teacherFirstName VARCHAR(40),
 						teacherLastName VARCHAR(40),
 						hoursByWeek INT,
-						scheduleTime DATETIME
+						scheduleID INT,
 						PRIMARY KEY(courseName),
 						FOREIGN KEY(teacherFirstName) REFERENCES Teacher(tFirstName),
-						FOREIGN KEY(teacherLastName) REFERENCES Teacher(tLastName)
+						FOREIGN KEY(teacherLastName) REFERENCES Teacher(tLastName),
+						FOREIGN KEY(scheduleID) REFERENCES Schedule(scheduleID)
 					);
 CREATE TABLE Student-Course (
 						studentCourseID INT AUTO_INCREMENT,
@@ -36,14 +37,23 @@ CREATE TABLE Student-Course (
 						FOREIGN KEY(studentRegNumber) REFERENCES Student(registrationNumber),
 						FOREIGN KEY(courseName) REFERENCES Course(courseName)
 					);
+CREATE TABLE Schedule(
+						scheduleID INT,
+						startTime TIME,
+						finishTime TIME,
+						dayOfTheWeek DATE,
+						PRIMARY KEY(scheduleID)
+					);
+INSERT INTO Schedule (scheduleID, startTime, finishTime, dayOfTheWeek) VALUES
+					(1, '15:00:00', '16:00:00', '2000-1-1');
 INSERT INTO Teacher (firstName, lastName, dateOfBirth) VALUES
 					('first','first', '1980-10-10'), 
 					('second','second','1980-10-10'),
 					('third', 'third', '1980-10-10');
-INSERT INTO Course (courseName, teacherFirstName, teacherLastName, hoursByWeek, scheduleTime) VALUES
-					('howToUseJava', 'first', 'first', 1, '2017-3-4 03:00:00'),
-					('howToUsePython', 'second', 'second', 1, '2017-3-4 04:00:00'),
-					('howToUseC', 'third', 'third', 1, '2017-3-4 05:00:00');
+INSERT INTO Course (courseName, teacherFirstName, teacherLastName, hoursByWeek, scheduleID) VALUES
+					('howToUseJava', 'first', 'first', 1, 1),
+					('howToUsePython', 'second', 'second', 1, 1),
+					('howToUseC', 'third', 'third', 1, 1);
 INSERT INTO Student (registrationNumber, firstName, lastName, dateOfBirth) VALUES
 					(1, 'aaaa', 'aaaa', '1980-10-10'),
 					(2, 'aaab', 'aaaa', '1980-10-10'),
@@ -105,5 +115,11 @@ SELECT studentsPassed, studentsfailed
 				WHERE failed.finalNote < 4
 					AND courseName = <givenCourseName>
 			) as studentsfailed;
-		
-					
+SELECT tLastName, tFirstName, DAYOFWEEK(schedule.dayOfTheWeek), schedule.startTime, schedule.finishTime, courseName
+	FROM Course
+		JOIN Teacher ON Course.teacherFirstName = Teacher.tFirstName
+						AND Course.teacherLastName = Teacher.tLastName
+		JOIN Schedule ON Course.scheduleID = Schedule.scheduleID
+	WHERE Teacher.tFirstName = <givenTeacherFirstName>
+		AND Teacher.tLastName = <givenTeacherLastName>
+	ORDER BY DAYOFWEEK(schedule.dayOfTheWeek);
