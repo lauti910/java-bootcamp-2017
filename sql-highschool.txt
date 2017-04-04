@@ -1,0 +1,90 @@
+CREATE DATABASE high-school;
+USE high-school;
+CREATE TABLE Student(
+						registrationNumber INT PRIMARY KEY,
+						firstName VARCHAR(40),
+						lastName VARCHAR(40),
+						dateOfBirth DATE,
+						PRIMARY KEY(registrationNumber)
+					);
+CREATE TABLE Teacher(
+						firstName VARCHAR(40),
+						lastName VARCHAR(40),
+						dateOfBirth DATE,
+						PRIMARY KEY(firstName),
+						PRIMARY KEY(lastName)
+					);
+CREATE TABLE Course (
+						courseName VARCHAR(40),
+						teacherFirstName VARCHAR(40),
+						teacherLastName VARCHAR(40),
+						hoursByWeek INT,
+						scheduleTime DATETIME
+						PRIMARY KEY(courseName),
+						FOREIGN KEY(teacherFirstName) REFERENCES Teacher(firstName),
+						FOREIGN KEY(teacherLastName) REFERENCES Teacher(lastName)
+					);
+CREATE TABLE Student-Course (
+						studentCourseID INT AUTO_INCREMENT,
+						studentRegNumber INT,
+						courseName VARCHAR(40),
+						partialNoteA INT,
+						partialNoteB INT,
+						partialNoteC INT,
+						finalNote INT,
+						PRIMARY KEY(studentCourseID),
+						FOREIGN KEY(studentRegNumber) REFERENCES Student(registrationNumber),
+						FOREIGN KEY(courseName) REFERENCES Course(courseName)
+					);
+INSERT INTO Teacher (firstName, lastName, dateOfBirth) VALUES
+					('first','first', '1980-10-10'), 
+					('second','second','1980-10-10'),
+					('third', 'third', '1980-10-10');
+INSERT INTO Course (courseName, teacherFirstName, teacherLastName, hoursByWeek, scheduleTime) VALUES
+					('howToUseJava', 'first', 'first', 1, '2017-3-4 03:00:00'),
+					('howToUsePython', 'second', 'second', 1, '2017-3-4 04:00:00'),
+					('howToUseC', 'third', 'third', 1, '2017-3-4 05:00:00');
+INSERT INTO Student (registrationNumber, firstName, lastName, dateOfBirth) VALUES
+					(1, 'aaaa', 'aaaa', '1980-10-10'),
+					(2, 'aaab', 'aaaa', '1980-10-10'),
+					(3, 'aaba', 'aaaa', '1980-10-10'),
+					(4, 'aabb', 'aaaa', '1980-10-10'),
+					(5, 'abaa', 'aaaa', '1980-10-10'),
+					(6, 'abab', 'aaaa', '1980-10-10'),
+					(7, 'abba', 'aaaa', '1980-10-10'),
+					(8, 'abbb', 'aaaa', '1980-10-10'),
+					(9, 'baaa', 'aaaa', '1980-10-10'),
+					(10, 'baab', 'aaaa', '1980-10-10');
+INSERT INTO Student-Course (studentRegNumber, courseName, partialNoteA, partialNoteB, partialNoteC, finalNote) VALUES
+					(1, 'howToUseJava'),
+					(2, 'howToUseJava'),
+					(3, 'howToUseJava'),
+					(4, 'howToUseJava'),
+					(5, 'howToUseJava'),
+					(6, 'howToUseJava'),
+					(7, 'howToUseJava'),
+					(8, 'howToUseJava'),
+					(9, 'howToUseJava'),
+					(10, 'howToUseJava'),
+					(1, 'howToUsePython'),
+					(2, 'howToUsePython'),
+					(3, 'howToUsePython'),
+					(4, 'howToUsePython'),
+					(5, 'howToUsePython'),
+					(6, 'howToUsePython'),
+					(7, 'howToUsePython'),
+					(8, 'howToUsePython'),
+					(9, 'howToUsePython'),
+					(10, 'howToUsePython'),
+					(1, 'howToUseC'),
+					(2, 'howToUseC'),
+					(3, 'howToUseC'),
+					(4, 'howToUseC'),
+					(5, 'howToUseC'),
+					(6, 'howToUseC'),
+					(7, 'howToUseC'),
+					(8, 'howToUseC'),
+					(9, 'howToUseC'),
+					(10, 'howToUseC');
+					
+					
