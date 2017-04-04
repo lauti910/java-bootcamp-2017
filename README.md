@@ -362,7 +362,7 @@ Commit your practice code.
 
 ##### Extra documentation: #####
 
-1. [Optimizaciones en MySql](http://www.arsys.info/programacion/bases-de-datos/como-optimizar-bases-de-datos-mysql/)
+1. [Optimizaciones en MySql](https://blog.arsys.es/como-optimizar-bases-de-datos-mysql/)
 
 
 ##### Practice: #####
