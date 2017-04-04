@@ -2,14 +2,14 @@ CREATE DATABASE high-school;
 USE high-school;
 CREATE TABLE Student(
 						registrationNumber INT PRIMARY KEY,
-						firstName VARCHAR(40),
-						lastName VARCHAR(40),
+						sFirstName VARCHAR(40),
+						sLastName VARCHAR(40),
 						dateOfBirth DATE,
 						PRIMARY KEY(registrationNumber)
 					);
 CREATE TABLE Teacher(
-						firstName VARCHAR(40),
-						lastName VARCHAR(40),
+						tFirstName VARCHAR(40),
+						tLastName VARCHAR(40),
 						dateOfBirth DATE,
 						PRIMARY KEY(firstName),
 						PRIMARY KEY(lastName)
@@ -21,8 +21,8 @@ CREATE TABLE Course (
 						hoursByWeek INT,
 						scheduleTime DATETIME
 						PRIMARY KEY(courseName),
-						FOREIGN KEY(teacherFirstName) REFERENCES Teacher(firstName),
-						FOREIGN KEY(teacherLastName) REFERENCES Teacher(lastName)
+						FOREIGN KEY(teacherFirstName) REFERENCES Teacher(tFirstName),
+						FOREIGN KEY(teacherLastName) REFERENCES Teacher(tLastName)
 					);
 CREATE TABLE Student-Course (
 						studentCourseID INT AUTO_INCREMENT,
@@ -86,5 +86,24 @@ INSERT INTO Student-Course (studentRegNumber, courseName, partialNoteA, partialN
 					(8, 'howToUseC'),
 					(9, 'howToUseC'),
 					(10, 'howToUseC');
-					
+
+
+SELECT  courseName, tLastName, tFirstName, sLastName, sFirstName 
+		FROM Student-Course
+			JOIN Course ON Student-Course.courseName = Course.courseName
+			JOIN Student ON Student-Course.studentRegNumber = Student.registrationNumber
+		WHERE Course.courseName = <givenCourseName>
+		ORDER BY courseName, sLastName, sFirstName DESC;
+SELECT studentsPassed, studentsfailed 
+	FROM 	(SELECT COUNT(passed)
+				FROM Student-Course AS passed
+				WHERE passed.finalNote >= 4
+					AND courseName = <givenCourseName>
+			) AS studentsPassed,
+			(SELECT COUNT(failed)
+				FROM Student-Course AS failed
+				WHERE failed.finalNote < 4
+					AND courseName = <givenCourseName>
+			) as studentsfailed;
+		
 					
