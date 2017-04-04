@@ -47,7 +47,7 @@ exercises**
 
     * [Topic 5: NoSQL - MongoDB](#topic-5-nosql---mongodb-2-days)
 
-    * [Topic 6: Hibernate - JPA (2 days)](#topic-5-nosql---mongodb-2-days)
+    * [Topic 6: Hibernate - JPA (2 days)](#topic-6-hibernate---jpa-2-days)
     
     * [Topic 7: Spring Core & REST](#topic-5-spring-core--rest-3-days)
 
