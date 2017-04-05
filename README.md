@@ -448,7 +448,7 @@ Commit your practice code.
 
 ##### Practice: #####
 
-1. Using Hibernate, develop the topic 4 models in Java.
+1. Using Hibernate, develop the topic 4 models in Java. Use XML configuration for these.
 2. Provide CRUD operations for at least 2 of the mentioned classes.
 3. Add Hibernate annotations to your ShoppingCartApi classes.
 
