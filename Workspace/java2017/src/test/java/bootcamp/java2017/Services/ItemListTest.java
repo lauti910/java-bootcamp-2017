@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import bootcamp.java2017.Services.ShoppingCart.Items.Item;
-import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
-import bootcamp.java2017.Services.ShoppingCart.Items.ItemListImpl;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemListImpl;
 
 public class ItemListTest {
 	

@@ -6,16 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import bootcamp.java2017.Services.Exceptions.ItemNotFoundException;
-import bootcamp.java2017.Services.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.Services.ShoppingCart.ShoppingCartAPI;
-import bootcamp.java2017.Services.ShoppingCart.ShoppingCartImpl;
-import bootcamp.java2017.Services.ShoppingCart.Items.Item;
-import bootcamp.java2017.Services.ShoppingCart.Items.ItemList;
-import bootcamp.java2017.Services.ShoppingCart.Payments.CashPayment;
-import bootcamp.java2017.Services.ShoppingCart.Payments.FormOfPayment;
-import bootcamp.java2017.Services.ShoppingCart.Payments.PayPalPayment;
-import bootcamp.java2017.Services.UserService.User;
+import bootcamp.java2017.ClaseServices.Model.User;
+import bootcamp.java2017.ClaseServices.Model.Exceptions.ItemNotFoundException;
+import bootcamp.java2017.ClaseServices.Model.Exceptions.NotEnoughMoneyException;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.FormOfPayment;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.PayPalPayment;
+import bootcamp.java2017.ClaseServices.Service.ShoppingCart.ShoppingCartAPI;
+import bootcamp.java2017.ClaseServices.ServiceImpl.ShoppingCart.ShoppingCartImpl;
 
 public class ShoppingCartTest {
 
