@@ -1,125 +1,138 @@
 CREATE DATABASE high-school;
 USE high-school;
-CREATE TABLE Student(
-						registrationNumber INT PRIMARY KEY,
-						sFirstName VARCHAR(40),
-						sLastName VARCHAR(40),
-						dateOfBirth DATE,
-						PRIMARY KEY(registrationNumber)
+CREATE TABLE student(
+						reg_number INT AUTO_INCREMENT,
+						first_name VARCHAR(40),
+						last_name VARCHAR(40),
+						date_of_birth DATE,
+						PRIMARY KEY(reg_number)
 					);
-CREATE TABLE Teacher(
-						tFirstName VARCHAR(40),
-						tLastName VARCHAR(40),
-						dateOfBirth DATE,
-						PRIMARY KEY(firstName),
-						PRIMARY KEY(lastName)
+CREATE TABLE teacher(
+						teacher_id INT AUTO_INCREMENT
+						first_name VARCHAR(40),
+						last_name VARCHAR(40),
+						date_of_birth DATE,
+						PRIMARY KEY(teacher_id)
 					);
-CREATE TABLE Course (
-						courseName VARCHAR(40),
-						teacherFirstName VARCHAR(40),
-						teacherLastName VARCHAR(40),
-						hoursByWeek INT,
-						scheduleID INT,
-						PRIMARY KEY(courseName),
-						FOREIGN KEY(teacherFirstName) REFERENCES Teacher(tFirstName),
-						FOREIGN KEY(teacherLastName) REFERENCES Teacher(tLastName),
-						FOREIGN KEY(scheduleID) REFERENCES Schedule(scheduleID)
+CREATE TABLE course (
+						course_id INT AUTO_INCREMENT,
+						course_name VARCHAR(40),
+						teacher_id INT),
+						hours_by_week INT,
+						PRIMARY KEY(course_id),
+						FOREIGN KEY(teacher_id) REFERENCES teacher(teacher_id),
 					);
-CREATE TABLE Student-Course (
-						studentCourseID INT AUTO_INCREMENT,
-						studentRegNumber INT,
-						courseName VARCHAR(40),
-						partialNoteA INT,
-						partialNoteB INT,
-						partialNoteC INT,
-						finalNote INT,
-						PRIMARY KEY(studentCourseID),
-						FOREIGN KEY(studentRegNumber) REFERENCES Student(registrationNumber),
-						FOREIGN KEY(courseName) REFERENCES Course(courseName)
+CREATE TABLE student_course (
+						student_course_id INT AUTO_INCREMENT,
+						s_reg_number INT,
+						course_id VARCHAR(40),
+						partial_note_A INT,
+						partial_note_B INT,
+						partial_note_C INT,
+						final_note INT,
+						PRIMARY KEY(student_course_id),
+						FOREIGN KEY(s_reg_number) REFERENCES student(reg_number),
+						FOREIGN KEY(course_id) REFERENCES course(course_id)
 					);
-CREATE TABLE Schedule(
-						scheduleID INT,
-						startTime TIME,
-						finishTime TIME,
-						dayOfTheWeek DATE,
-						PRIMARY KEY(scheduleID)
+CREATE TABLE schedule(
+						schedule_id INT AUTO_INCREMENT,
+						start_time TIME,
+						finish_time TIME,
+						day_of_the_week VARCHAR(10),
+						course_id INT,
+						PRIMARY KEY(schedule_id),
+						FOREIGN KEY(course_id) REFERENCES course(course_id)
 					);
-INSERT INTO Schedule (scheduleID, startTime, finishTime, dayOfTheWeek) VALUES
-					(1, '15:00:00', '16:00:00', '2000-1-1');
-INSERT INTO Teacher (firstName, lastName, dateOfBirth) VALUES
+INSERT INTO teacher (first_name, last_name, date_of_birth) VALUES
 					('first','first', '1980-10-10'), 
 					('second','second','1980-10-10'),
 					('third', 'third', '1980-10-10');
-INSERT INTO Course (courseName, teacherFirstName, teacherLastName, hoursByWeek, scheduleID) VALUES
-					('howToUseJava', 'first', 'first', 1, 1),
-					('howToUsePython', 'second', 'second', 1, 1),
-					('howToUseC', 'third', 'third', 1, 1);
-INSERT INTO Student (registrationNumber, firstName, lastName, dateOfBirth) VALUES
-					(1, 'aaaa', 'aaaa', '1980-10-10'),
-					(2, 'aaab', 'aaaa', '1980-10-10'),
-					(3, 'aaba', 'aaaa', '1980-10-10'),
-					(4, 'aabb', 'aaaa', '1980-10-10'),
-					(5, 'abaa', 'aaaa', '1980-10-10'),
-					(6, 'abab', 'aaaa', '1980-10-10'),
-					(7, 'abba', 'aaaa', '1980-10-10'),
-					(8, 'abbb', 'aaaa', '1980-10-10'),
-					(9, 'baaa', 'aaaa', '1980-10-10'),
-					(10, 'baab', 'aaaa', '1980-10-10');
-INSERT INTO Student-Course (studentRegNumber, courseName, partialNoteA, partialNoteB, partialNoteC, finalNote) VALUES
-					(1, 'howToUseJava'),
-					(2, 'howToUseJava'),
-					(3, 'howToUseJava'),
-					(4, 'howToUseJava'),
-					(5, 'howToUseJava'),
-					(6, 'howToUseJava'),
-					(7, 'howToUseJava'),
-					(8, 'howToUseJava'),
-					(9, 'howToUseJava'),
-					(10, 'howToUseJava'),
-					(1, 'howToUsePython'),
-					(2, 'howToUsePython'),
-					(3, 'howToUsePython'),
-					(4, 'howToUsePython'),
-					(5, 'howToUsePython'),
-					(6, 'howToUsePython'),
-					(7, 'howToUsePython'),
-					(8, 'howToUsePython'),
-					(9, 'howToUsePython'),
-					(10, 'howToUsePython'),
-					(1, 'howToUseC'),
-					(2, 'howToUseC'),
-					(3, 'howToUseC'),
-					(4, 'howToUseC'),
-					(5, 'howToUseC'),
-					(6, 'howToUseC'),
-					(7, 'howToUseC'),
-					(8, 'howToUseC'),
-					(9, 'howToUseC'),
-					(10, 'howToUseC');
+INSERT INTO course (course_name, teacher_id, hours_by_week) VALUES
+					('howToUseJava', 1, 1),
+					('howToUsePython', 2, 1),
+					('howToUseC', 3, 1);
+INSERT INTO schedule (start_time, finish_time, day_of_the_week, course_id) VALUES
+					('15:00:00', '16:00:00', 'MONDAY', 1);
+					('15:00:00', '16:00:00', 'MONDAY', 2);
+					('15:00:00', '16:00:00', 'MONDAY', 3);
+INSERT INTO student (first_name, last_name, date_of_birth) VALUES
+					('aaaa', 'aaaa', '1980-10-10'),
+					('aaab', 'aaaa', '1980-10-10'),
+					('aaba', 'aaaa', '1980-10-10'),
+					('aabb', 'aaaa', '1980-10-10'),
+					('abaa', 'aaaa', '1980-10-10'),
+					('abab', 'aaaa', '1980-10-10'),
+					('abba', 'aaaa', '1980-10-10'),
+					('abbb', 'aaaa', '1980-10-10'),
+					('baaa', 'aaaa', '1980-10-10'),
+					('baab', 'aaaa', '1980-10-10');
+INSERT INTO student_course (s_reg_number, course_id, partial_note_A, partial_note_B, partial_note_C, final_note) VALUES
+					(1, 1, 4, 4, 4, 4),
+					(2, 1, 6, 4, 6, 5),
+					(3, 1, 4, 8, 4, 6),
+					(4, 1, 9, 9, 8, 9),
+					(5, 1, 4, 5, 4, 4),
+					(6, 1, 4, 4, 4, 4),
+					(7, 1, 6, 8, 7, 7),
+					(8, 1, 1, 1, 4, 2),
+					(9, 1, 4, 4, 4, 4),
+					(10, 1, 10, 10, 10, 10),
+					(1, 2, 4, 2, 6, 4),
+					(2, 2, 4, 4, 4, 4),
+					(3, 2, 10, 8, 9, 9),
+					(4, 2, 5, 5, 5, 5),
+					(5, 2, 4, 4, 4, 4),
+					(6, 2, 2, 2, 1, 2),
+					(7, 2, 3, 1, 4, 2),
+					(8, 2, 1, 1, 1, 1),
+					(9, 2, 4, 4, 4, 4),
+					(10, 2, 10, 10 10, 10),
+					(1, 3, 4, 4, 4, 4),
+					(2, 3, 4, 4, 4, 4),
+					(3, 3, 2, 3, 4, 3),
+					(4, 3, 1, 2, 4, 2),
+					(5, 3, 3, 3, 3, 3),
+					(6, 3, 4, 4, 4, 4),
+					(7, 3, 6, 8, 8, 7),
+					(8, 3, 4, 4, 4, 4),
+					(9, 3, 9, 4, 6, 6),
+					(10, 3, 10, 10, 10, 10);
 
 
-SELECT  courseName, tLastName, tFirstName, sLastName, sFirstName 
-		FROM Student-Course
-			JOIN Course ON Student-Course.courseName = Course.courseName
-			JOIN Student ON Student-Course.studentRegNumber = Student.registrationNumber
-		WHERE Course.courseName = <givenCourseName>
-		ORDER BY courseName, sLastName, sFirstName DESC;
-SELECT studentsPassed, studentsfailed 
-	FROM 	(SELECT COUNT(passed)
-				FROM Student-Course AS passed
-				WHERE passed.finalNote >= 4
-					AND courseName = <givenCourseName>
-			) AS studentsPassed,
+SELECT  c.course_name, t.last_name, t.first_name, s.last_name, s.first_name 
+		FROM student_course AS sc
+			INNER JOIN course AS c ON sc.course_id = c.course_id
+			INNER JOIN student AS s ON sc.s_reg_number = s.reg_number
+			INNER JOIN teacher AS t ON t.teacher_id = c.teacher_id
+		WHERE c.course_name = <givenCourseName>
+		ORDER BY s.last_name, s.first_name DESC;
+		
+SELECT students_passed / total_students * 100, students_failed / total_students * 100
+	FROM 	(SELECT COUNT(sc.student_course_id)
+				FROM student_course AS sc
+					INNER JOIN course AS c ON sc.course_id = c.course_id
+				WHERE sc.final_note >= 4
+					AND c.course_name = <givenCourseName>
+			) AS students_passed,
+			
 			(SELECT COUNT(failed)
-				FROM Student-Course AS failed
-				WHERE failed.finalNote < 4
-					AND courseName = <givenCourseName>
-			) as studentsfailed;
-SELECT tLastName, tFirstName, DAYOFWEEK(schedule.dayOfTheWeek), schedule.startTime, schedule.finishTime, courseName
-	FROM Course
-		JOIN Teacher ON Course.teacherFirstName = Teacher.tFirstName
-						AND Course.teacherLastName = Teacher.tLastName
-		JOIN Schedule ON Course.scheduleID = Schedule.scheduleID
-	WHERE Teacher.tFirstName = <givenTeacherFirstName>
-		AND Teacher.tLastName = <givenTeacherLastName>
-	ORDER BY DAYOFWEEK(schedule.dayOfTheWeek);
+				FROM student_course AS sc
+					INNER JOIN course AS c ON sc.course_id = course_id
+				WHERE sc.final_note < 4
+					AND c.course_name = <givenCourseName>
+			) AS students_failed,
+			
+			(SELECT COUNT(sc.student_course_id)
+				FROM student_course AS sc
+					INNER JOIN course AS c ON sc.course_id = c.course_id
+				WHERE c.course_name = <givenCourseName>
+			) AS total_students;
+			
+			
+SELECT t.last_name, t.first_name, sch.day_of_the_week, sch.startTime, sch.finishTime, c.course_name
+	FROM course AS c
+		INNER JOIN teacher AS t ON c.teacher_id = t.teacher_id
+		INNER JOIN schedule AS sch ON c.course_id = sch.course_id
+	WHERE t.first_name = <givenTeacherFirstName>
+		AND t.last_name = <givenTeacherLastName>
+	ORDER BY sch.day_of_the_week;
