@@ -129,7 +129,7 @@ SELECT students_passed / total_students * 100, students_failed / total_students 
 			) AS total_students;
 			
 			
-SELECT t.last_name, t.first_name, sch.day_of_the_week, sch.startTime, sch.finishTime, c.course_name
+SELECT t.last_name, t.first_name, sch.day_of_the_week, sch.start_time, sch.finish_time, c.course_name
 	FROM course AS c
 		INNER JOIN teacher AS t ON c.teacher_id = t.teacher_id
 		INNER JOIN schedule AS sch ON c.course_id = sch.course_id
