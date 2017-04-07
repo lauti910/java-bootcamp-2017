@@ -1,6 +1,10 @@
 package bootcamp.java2017.ClaseHibernate.Model;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Integer noteID;
 	private Integer partialNoteA;
 	private Integer partialNoteB;

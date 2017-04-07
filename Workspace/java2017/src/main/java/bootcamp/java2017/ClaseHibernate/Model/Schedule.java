@@ -1,11 +1,13 @@
 package bootcamp.java2017.ClaseHibernate.Model;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Schedule {
-
+public class Schedule implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private LocalTime startTime;
 	private LocalTime finishTime;
 	private DayOfWeek dayOfTheWeek;

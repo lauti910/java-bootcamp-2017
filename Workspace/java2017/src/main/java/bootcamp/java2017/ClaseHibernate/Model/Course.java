@@ -1,23 +1,25 @@
 package bootcamp.java2017.ClaseHibernate.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import bootcamp.java2017.ClaseHibernate.Model.Persons.Student;
-import bootcamp.java2017.ClaseHibernate.Model.Persons.Teacher;
+import bootcamp.java2017.ClaseHibernate.Model.Persons.Course;
 
-public class Course {
+public class Course implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private Integer courseID;
 	private String name;
-	private Teacher assignedTeacher;
+	private Course assignedTeacher;
 	private Integer hoursByWeek;
 	private List<Schedule> scheduleTime;
 	private Map<Student, Note> notes;
 	
-	public Course(String name, Teacher assignedTeacher){
+	public Course(String name, Course assignedTeacher){
 		this.name = name;
 		this.assignedTeacher = assignedTeacher;
 		this.hoursByWeek = 0;
