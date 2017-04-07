@@ -477,6 +477,7 @@ Commit your practice code.
   
 ##### Practice: #####
 
+0. Create the REST layer for your shopping cart REST API. Use JAX-RS for it.
 1. Expose the shopping cart created in the topic 3.
 2. Write the swagger file for point 1.
 3. Create and document with swagger a REST API to register users. The API must provide: add, delete, update and find by name and find by nickname operations. Note that the username must be unique.
