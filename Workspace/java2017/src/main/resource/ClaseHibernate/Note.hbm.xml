@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="bootcamp.java2017.ClaseHibernate.Model.Note"
+		table="note">
+		<id name="noteID" type="java.lang.Integer">
+			<column name="course_id" />
+			<generator class="identity" />
+		</id>
+		<property name="partialNoteA" type="java.lang.Integer">
+			<column name="partial_note_a" not-null="false" />
+		</property>
+		<property name="partialNoteB" type="java.lang.Integer">
+			<column name="partial_note_b" not-null="false" />
+		</property>
+		<property name="partialNoteC" type="java.lang.Integer">
+			<column name="partial_note_c" not-null="false" />
+		</property>
+		<property name="finalNote" type="java.lang.Integer">
+			<column name="final_note" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

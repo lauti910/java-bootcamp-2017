@@ -1,6 +1,7 @@
 package bootcamp.java2017.ClaseHibernate.Model;
 
 public class Note {
+	private Integer noteID;
 	private Integer partialNoteA;
 	private Integer partialNoteB;
 	private Integer partialNoteC;

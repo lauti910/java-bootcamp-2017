@@ -5,8 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Course {
+import bootcamp.java2017.ClaseHibernate.Model.Persons.Student;
+import bootcamp.java2017.ClaseHibernate.Model.Persons.Teacher;
 
+public class Course {
+	
+	private Integer courseID;
 	private String name;
 	private Teacher assignedTeacher;
 	private Integer hoursByWeek;

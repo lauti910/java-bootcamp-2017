@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="bootcamp.java2017.ClaseHibernate.Model.Schedule"
+		table="schedule">
+		<id name="scheduleID" type="java.lang.Integer">
+			<column name="schedule_id" />
+			<generator class="identity" />
+		</id>
+		<property name="startTime" type="java.time.LocalDate">
+			<column name="start_time" not-null="true" />
+		</property>
+		<property name="finishTime" type="java.time.LocalDate">
+			<column name="finish_time" not-null="true" />
+		</property>
+		<property name="dayOfTheWeek" column="day_of_week">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">java.time.DayOfWeek</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

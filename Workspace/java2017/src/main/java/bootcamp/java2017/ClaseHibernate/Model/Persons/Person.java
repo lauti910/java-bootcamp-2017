@@ -1,4 +1,4 @@
-package bootcamp.java2017.ClaseHibernate.Model;
+package bootcamp.java2017.ClaseHibernate.Model.Persons;
 
 import java.time.LocalDate;
 import java.util.List;
