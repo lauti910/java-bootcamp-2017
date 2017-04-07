@@ -6,10 +6,21 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtils {
+public class HibernateSession {
+	
 	private Session currentSession;
 	private Transaction currentTransaction;
+	private static HibernateSession instance;
+	
+	private HibernateSession(){
+	}
 
+	public static HibernateSession getInstance(){
+		if(instance == null){
+			instance = new HibernateSession();
+		}
+		return instance;
+	}
 	public Session openCurrentSession() {
 		currentSession = getSessionFactory().openSession();
 		return currentSession;
