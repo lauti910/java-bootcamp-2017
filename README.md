@@ -49,7 +49,7 @@ exercises**
 
     * [Topic 6: Hibernate - JPA (2 days)](#topic-6-hibernate---jpa-2-days)
     
-    * [Topic 7: Spring Core & REST](#topic-5-spring-core--rest-3-days)
+    * [Topic 7: Spring Core & REST](#topic-7-spring-core-&-rest-3-days)
 
 10. [Your First Project Starts Now!](#your-first-project-starts-now)
 
