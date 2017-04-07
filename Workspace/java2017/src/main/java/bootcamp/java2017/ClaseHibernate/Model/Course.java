@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import bootcamp.java2017.ClaseHibernate.Model.Persons.Student;
-import bootcamp.java2017.ClaseHibernate.Model.Persons.Course;
+import bootcamp.java2017.ClaseHibernate.Model.Persons.Teacher;
 
 public class Course implements Serializable{
 	

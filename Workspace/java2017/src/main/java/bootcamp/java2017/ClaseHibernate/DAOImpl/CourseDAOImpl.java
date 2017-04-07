@@ -2,45 +2,49 @@ package bootcamp.java2017.ClaseHibernate.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import bootcamp.java2017.ClaseHibernate.DAO.CourseDAO;
 import bootcamp.java2017.ClaseHibernate.Model.Course;
 
 public class CourseDAOImpl implements CourseDAO{
-
+	private HibernateUtils utils;
 	@Override
 	public void persist(Course course) {
-		// TODO Auto-generated method stub
-		
+		this.utils.getCurrentSession().persist(course);
 	}
 
 	@Override
 	public Course findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.utils.getCurrentSession().get(Course.class, id);
 	}
 
 	@Override
 	public void delete(Course course) {
-		// TODO Auto-generated method stub
+		this.utils.getCurrentSession().delete(course);
 		
 	}
 
 	@Override
 	public void update(Course course) {
-		// TODO Auto-generated method stub
+		this.utils.getCurrentSession().update(course);
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Course> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Course>) this.utils.getCurrentSession().createQuery("from Course").list();
 	}
 
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
+		List<Course> all = this.getAll();
+		for(Course c: all){
+			this.delete(c);
+		}
 	}
 	
 }
