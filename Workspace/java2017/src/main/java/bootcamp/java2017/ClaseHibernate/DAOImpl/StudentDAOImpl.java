@@ -3,44 +3,53 @@ package bootcamp.java2017.ClaseHibernate.DAOImpl;
 import java.util.List;
 
 import bootcamp.java2017.ClaseHibernate.DAO.StudentDAO;
+import bootcamp.java2017.ClaseHibernate.Model.Course;
 import bootcamp.java2017.ClaseHibernate.Model.Persons.Student;
 
 public class StudentDAOImpl implements StudentDAO {
+	private HibernateSession utils;
 
+	
+	public StudentDAOImpl(){
+		this.utils = HibernateSession.getInstance();
+	}
 	@Override
 	public void persist(Student student) {
-		// TODO Auto-generated method stub
-		
+		this.utils.getCurrentSession().persist(student);
+
 	}
 
 	@Override
 	public Student findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.utils.getCurrentSession().get(Student.class, id);
+
 	}
 
 	@Override
 	public void delete(Student student) {
-		// TODO Auto-generated method stub
+		this.utils.getCurrentSession().delete(student);
 		
 	}
 
 	@Override
 	public void update(Student student) {
-		// TODO Auto-generated method stub
+		this.utils.getCurrentSession().update(student);
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Student> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Student>) this.utils.getCurrentSession().createQuery("from Student").list();
+
 	}
 
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
+		List<Student> all = this.getAll();
+		for (Student s : all) {
+			this.delete(s);
+		}
 	}
 
 }

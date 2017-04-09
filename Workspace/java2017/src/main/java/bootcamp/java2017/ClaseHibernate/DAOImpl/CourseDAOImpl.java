@@ -2,8 +2,6 @@ package bootcamp.java2017.ClaseHibernate.DAOImpl;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import bootcamp.java2017.ClaseHibernate.DAO.CourseDAO;
 import bootcamp.java2017.ClaseHibernate.Model.Course;
@@ -11,7 +9,9 @@ import bootcamp.java2017.ClaseHibernate.Model.Course;
 public class CourseDAOImpl implements CourseDAO {
 	private HibernateSession utils;
 
-	
+	public CourseDAOImpl(){
+		this.utils = HibernateSession.getInstance();
+	}
 	@Override
 	public void persist(Course course) {
 		this.utils.getCurrentSession().persist(course);
@@ -20,7 +20,6 @@ public class CourseDAOImpl implements CourseDAO {
 	
 	@Override
 	public Course findById(Integer id) {
-		// TODO Auto-generated method stub
 		return this.utils.getCurrentSession().get(Course.class, id);
 	}
 
