@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(String username, String password) throws UserNotFoundException {
+	public User getUser(String username) throws UserNotFoundException {
 		Optional<User> opUser = this.database.stream()
-								.filter(user -> user.getUsername() == username && user.getPassword() == password)
+								.filter(user -> user.getUsername() == username)
 								.findAny();
 		
 		/* if the user is found, returns the user

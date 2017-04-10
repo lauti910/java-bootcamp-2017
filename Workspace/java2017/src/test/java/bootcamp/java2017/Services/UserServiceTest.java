@@ -26,44 +26,40 @@ public class UserServiceTest {
 	@Test
 	public void test_YouCanCreateAndGetAnUser() throws UserNotFoundException{
 		Mockito.doReturn("lauti910").when(this.user).getUsername();
-		Mockito.doReturn("1234").when(this.user).getPassword();
 		
 		this.userService.createUser(this.user);
-		assertEquals(this.userService.getUser("lauti910", "1234"), this.user); 
+		assertEquals(this.userService.getUser("lauti910"), this.user); 
 	}
 	
 	@Test(expected = UserNotFoundException.class)
 	public void test_IfYouTryToGetAnUserThatDoesntExist_ItThrowsAnException() throws UserNotFoundException{
-		this.userService.getUser("lala", "lolo");
+		this.userService.getUser("lala");
 	}
 	
 	@Test
 	public void test_YouCanUpdateAnUser() throws UserNotFoundException{
 		Mockito.doReturn("lauti910").when(this.user).getUsername();
 		Mockito.doReturn("lauti910@gmail.com").when(this.user).getEmail();
-		Mockito.doReturn("1234").when(this.user).getPassword();
 		
 		User updatedUser = Mockito.mock(User.class);
 		Mockito.doReturn("lauti910").when(updatedUser).getUsername();
 		Mockito.doReturn("lauti910@hotmail.com").when(updatedUser).getEmail();
-		Mockito.doReturn("1234").when(updatedUser).getPassword();
 		
 		// gmail -> hotmail
 		this.userService.createUser(this.user);
 		this.userService.updateUser(updatedUser);
 		
-		assertEquals(this.userService.getUser("lauti910", "1234"), updatedUser);
+		assertEquals(this.userService.getUser("lauti910"), updatedUser);
 		
 	}
 	
 	@Test(expected= UserNotFoundException.class)
 	public void test_YouCanRemoveAnUser() throws UserNotFoundException{
 		Mockito.doReturn("lauti910").when(this.user).getUsername();
-		Mockito.doReturn("1234").when(this.user).getPassword();
 		
 		this.userService.createUser(this.user);
 		this.userService.removeUser(this.user);
 
-		this.userService.getUser("lauti910", "1234");
+		this.userService.getUser("lauti910");
 	}
 }

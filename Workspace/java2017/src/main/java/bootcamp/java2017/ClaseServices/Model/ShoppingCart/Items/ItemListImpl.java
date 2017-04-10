@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ItemListImpl implements ItemList {
 	
-	List<Item> items;
+	private List<Item> items;
 
 	public ItemListImpl(List<Item> items) {
 		this.items = items;
