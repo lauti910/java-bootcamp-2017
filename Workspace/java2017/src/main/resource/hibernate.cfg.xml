@@ -12,5 +12,13 @@
     <mapping resource="ClaseHibernate/Note.hbm.xml"/>
     <mapping resource="ClaseHibernate/Person.hbm.xml"/>
     <mapping resource="ClaseHibernate/Schedule.hbm.xml"/>
+    
+    <mapping class="ClaseServices.Model.User"/>
+    <mapping class="ClaseServices.Model.ShoppingCart.Items.ItemImpl"/>
+    <mapping class="ClaseServices.Model.ShoppingCart.Offer.Offer"/>
+    <mapping class="ClaseServices.Model.ShoppingCart.Payments.CashPayment"/>
+    <mapping class="ClaseServices.Model.ShoppingCart.Payments.CreditCardPayment"/>
+    <mapping class="ClaseServices.Model.ShoppingCart.Payments.PayPalPayment"/>
+    <mapping class="ClaseServices.ServiceImpl.ShoppingCart.ShoppingCartImpl"/>
   </session-factory>
 </hibernate-configuration>

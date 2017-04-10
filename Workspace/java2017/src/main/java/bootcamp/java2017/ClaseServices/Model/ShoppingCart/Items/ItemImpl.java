@@ -1,5 +1,10 @@
 package bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="item")
 public class ItemImpl implements Item{
 	
 	private Double price;

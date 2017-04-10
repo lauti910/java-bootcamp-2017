@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import bootcamp.java2017.ClaseServices.DAOImpl.Offer.OffersDAOImpl;
 import bootcamp.java2017.ClaseServices.Model.User;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemImpl;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemListImpl;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Offer.Offer;
@@ -17,9 +30,18 @@ import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.FormOfPayment
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.Ticket;
 import bootcamp.java2017.ClaseServices.Service.ShoppingCart.ShoppingCartAPI;
 
+@Entity
+@Table(name="shopping_cart")
 public class ShoppingCartImpl implements ShoppingCartAPI {
 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@OneToMany(cascade=CascadeType.ALL, targetEntity= ItemImpl.class)
+	@JoinColumn(name="item_id")
 	private List<Item> items;
+	
+	@ManyToOne
 	private FormOfPayment payment;
 
 	public ShoppingCartImpl() {

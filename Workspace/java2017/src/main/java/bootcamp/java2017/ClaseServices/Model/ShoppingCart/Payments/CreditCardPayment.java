@@ -1,9 +1,12 @@
 package bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments;
 
+import javax.persistence.Entity;
+
 import bootcamp.java2017.ClaseServices.Model.User;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
 
+@Entity
 public class CreditCardPayment implements FormOfPayment {
 
 	@Override

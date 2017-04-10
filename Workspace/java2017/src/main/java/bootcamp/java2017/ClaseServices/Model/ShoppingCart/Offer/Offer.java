@@ -3,15 +3,26 @@ package bootcamp.java2017.ClaseServices.Model.ShoppingCart.Offer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemImpl;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemListImpl;
 
+@Entity
+@Table(name= "offer")
 public class Offer {
 	
 	private String name;
 	private Double price;
+	@OneToMany(cascade=CascadeType.ALL, targetEntity= ItemImpl.class)
 	private List<Item> items;
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	private List<Offer> offers;
 	
 	public Offer(String name, Double price){
