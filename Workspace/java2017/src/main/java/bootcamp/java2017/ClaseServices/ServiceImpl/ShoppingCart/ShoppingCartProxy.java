@@ -18,41 +18,41 @@ public class ShoppingCartProxy implements ShoppingCartAPI{
 	}
 
 	@Override
-	public void addItem(Item item) {
-		this.implementation.addItem(item);
+	public void addItem(Item item, Integer cartId) {
+		this.implementation.addItem(item, cartId);
 		
 	}
 
 	@Override
-	public void removeItem(Item item) throws ItemNotFoundException {
-		this.implementation.removeItem(item);
+	public void removeItem(Item item, Integer cartId) throws ItemNotFoundException {
+		this.implementation.removeItem(item, cartId);
 		
 	}
 
 	@Override
-	public Double getTotalPrice() {
-		return this.implementation.getTotalPrice();
+	public Double getTotalPrice(Integer cartId) {
+		return this.implementation.getTotalPrice(cartId);
 	}
 
 	@Override
-	public Double getActualPrice() {
-		return this.implementation.getActualPrice();
+	public Double getActualPrice(Integer cartId) {
+		return this.implementation.getActualPrice(cartId);
 	}
 
 	@Override
-	public void setFormOfPayment(FormOfPayment payment) {
-		this.implementation.setFormOfPayment(payment);
+	public void setFormOfPayment(FormOfPayment payment, Integer cartId) {
+		this.implementation.setFormOfPayment(payment, cartId);
 		
 	}
 
 	@Override
-	public ItemList getItems() {
-		return this.implementation.getItems();
+	public ItemList getItems(Integer cartId) {
+		return this.implementation.getItems(cartId);
 	}
 
 	@Override
-	public Ticket pay(User user) throws NotEnoughMoneyException {
-		return this.implementation.pay(user);
+	public Ticket pay(Integer cartId) throws NotEnoughMoneyException {
+		return this.implementation.pay(cartId);
 	}
 
 }

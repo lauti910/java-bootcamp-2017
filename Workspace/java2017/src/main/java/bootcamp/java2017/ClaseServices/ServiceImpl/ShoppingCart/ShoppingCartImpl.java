@@ -16,10 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import bootcamp.java2017.ClaseServices.DAOImpl.Offer.OffersDAOImpl;
+import bootcamp.java2017.ClaseServices.DAO.CartDAO;
+import bootcamp.java2017.ClaseServices.DAOImpl.CartDAOImpl;
+import bootcamp.java2017.ClaseServices.DAOImpl.OffersDAOImpl;
 import bootcamp.java2017.ClaseServices.Model.User;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.NotEnoughMoneyException;
+import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Cart;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemImpl;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
@@ -28,35 +31,32 @@ import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Offer.Offer;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.CashPayment;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.FormOfPayment;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.Ticket;
+import bootcamp.java2017.ClaseServices.Service.UserServiceFactory;
 import bootcamp.java2017.ClaseServices.Service.ShoppingCart.ShoppingCartAPI;
 
-@Entity
-@Table(name="shopping_cart")
 public class ShoppingCartImpl implements ShoppingCartAPI {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity= ItemImpl.class)
-	@JoinColumn(name="item_id")
-	private List<Item> items;
-	
-	@ManyToOne
-	private FormOfPayment payment;
-
+	CartDAO dao;
 	public ShoppingCartImpl() {
-		this.items = new ArrayList<Item>();
-		this.payment = new CashPayment();
+		this.dao = new CartDAOImpl();
+	}
+	
+	@Override
+	public void addItem(Item item, Integer cartId) {
+		//openSession
+		Cart cart = this.dao.getCart(cartId);
+		cart.addItem(item);
+		this.dao.update(cart);
+		
+		//closeSession
+
 	}
 
 	@Override
-	public void addItem(Item item) {
-		this.items.add(item);
-
-	}
-
-	@Override
-	public void removeItem(Item item) throws ItemNotFoundException {
+	public void removeItem(Item item, Integer cartId) throws ItemNotFoundException {
+		// dao.getCart
+		// cart.remove
+		// dao.updateCart
 		Boolean removed = this.items.remove(item); // list.remove returns true
 													// if the item is removed
 		if (!removed) {
@@ -65,7 +65,10 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public Double getTotalPrice() {
+	public Double getTotalPrice(Integer cartId) {
+		
+		// dao.getCart
+		// return cart.getTotalPrice
 		Double sum = (double) 0;
 		for(Item i: this.items){
 			sum =  sum + i.getPrice();
@@ -74,7 +77,9 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public Double getActualPrice() {
+	public Double getActualPrice(Integer cartId) {
+		//dao.getCart
+		// return cart.getActualPrice
 		Double total = this.getTotalPrice();
 		List<Offer> applyableOffers =  new OffersDAOImpl().getOffersList().stream()
 										.filter(offer -> offer.canBeApplied(this.getItems()))
@@ -87,18 +92,23 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public void setFormOfPayment(FormOfPayment payment) {
+	public void setFormOfPayment(FormOfPayment payment, Integer cartId) {
+		//dao.getCart
+		//cart.setPayment
+		//dao.updateCart
 		this.payment = payment;
 
 	}
 
 	@Override
-	public ItemList getItems() {
+	public ItemList getItems(Integer cartId) {
+		//return dao.getCart.getItems
 		return new ItemListImpl(this.items);
 	}
 
 	@Override
-	public Ticket pay(User user) throws NotEnoughMoneyException {
+	public Ticket pay(Integer cartId) throws NotEnoughMoneyException {
+		//return dao.getCart.pay
 		Ticket ticket = this.payment.pay(user, this.getActualPrice(), this.getItems());
 		
 		this.items.clear();

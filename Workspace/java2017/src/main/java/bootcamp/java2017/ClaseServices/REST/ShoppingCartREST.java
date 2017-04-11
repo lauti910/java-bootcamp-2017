@@ -1,6 +1,7 @@
-package bootcamp.java2017.ClaseServices.ServiceImpl.REST;
+package bootcamp.java2017.ClaseServices.REST;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -17,36 +18,30 @@ import bootcamp.java2017.ClaseServices.Model.User;
 import bootcamp.java2017.ClaseServices.Model.Exceptions.UserNotFoundException;
 import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.ClaseServices.Service.UserServiceFactory;
+import bootcamp.java2017.ClaseServices.Service.ShoppingCart.ShoppingCartAPI;
 import bootcamp.java2017.ClaseServices.Service.UserService.UserService;
 
-@Path("/cart")
+@Path("/{cartID}")
 public class ShoppingCartREST {
-
-	private UserService userService = new UserServiceFactory().getLocalService();
+	
+	ShoppingCartAPI shoppingCart;
 
 	@GET
-	@Path("/{username}/items")
-	public Response getItems(@PathParam("username") String username) {
+	@Path("/items")
+	public Response getItems(@PathParam("cartId") Integer id) {
 
-		// TODO: validate(username)
-		if (username == null || username.isEmpty()) {
-			return Response.status(Response.Status.BAD_REQUEST).entity("The username can't be empty").build();
-		}
 		try {
-
-			User user = this.userService.getUser(username);
-			ItemList items = user.getShoppingCart().getItems();
+			
+			ItemList items = shoppingCart.getItems(id);
 			String json = new ObjectMapper().writeValueAsString(items);
 
 			return Response.ok(json, MediaType.APPLICATION_JSON).build();
 			
-		} catch (UserNotFoundException e) {
-			return Response.status(Response.Status.NOT_FOUND)
-					.entity("User " + username + " not found").build();
-			
-		} catch (JsonProcessingException e) {
+		}
+		catch (JsonProcessingException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 					.entity("The items werent transformed to json").build();
 		}
 	}
+	
 }

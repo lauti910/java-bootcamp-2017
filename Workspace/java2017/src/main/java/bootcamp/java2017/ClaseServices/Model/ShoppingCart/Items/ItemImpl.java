@@ -1,12 +1,17 @@
 package bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="item")
 public class ItemImpl implements Item{
 	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	private Double price;
 	private String name;
 	

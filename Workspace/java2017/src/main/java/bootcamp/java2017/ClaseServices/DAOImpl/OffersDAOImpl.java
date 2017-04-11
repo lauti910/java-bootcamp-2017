@@ -1,4 +1,4 @@
-package bootcamp.java2017.ClaseServices.DAOImpl.Offer;
+package bootcamp.java2017.ClaseServices.DAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,41 +18,41 @@ public class ShoppingCartWebImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public void addItem(Item item) {
-		this.web.addItem(item);
+	public void addItem(Item item, Integer cartId) {
+		this.web.addItem(item, cartId);
 		
 	}
 
 	@Override
-	public void removeItem(Item item) throws ItemNotFoundException {
-		this.web.removeItem(item);
+	public void removeItem(Item item, Integer cartId) throws ItemNotFoundException {
+		this.web.removeItem(item, cartId);
 		
 	}
 
 	@Override
-	public Double getTotalPrice() {
-		return this.web.getTotalPrice();
+	public Double getTotalPrice(Integer cartId) {
+		return this.web.getTotalPrice(cartId);
 	}
 
 	@Override
-	public Double getActualPrice() {
-		return this.web.getActualPrice();
+	public Double getActualPrice(Integer cartId) {
+		return this.web.getActualPrice(cartId);
 	}
 
 	@Override
-	public void setFormOfPayment(FormOfPayment payment) {
-		this.web.setFormOfPayment(payment);
+	public void setFormOfPayment(FormOfPayment payment, Integer cartId) {
+		this.web.setFormOfPayment(payment, cartId);
 		
 	}
 
 	@Override
-	public ItemList getItems() {
-		return this.web.getItems();
+	public ItemList getItems(Integer cartId) {
+		return this.web.getItems(cartId);
 	}
 
 	@Override
-	public Ticket pay(User user) throws NotEnoughMoneyException {
-		return this.web.pay(user);
+	public Ticket pay(Integer cartId) throws NotEnoughMoneyException {
+		return this.web.pay(cartId);
 	}
 
 }
