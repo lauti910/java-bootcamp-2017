@@ -495,19 +495,14 @@ Commit your practice code.
       "drinks":1,
       "bathroom":1
   },
+  ... //the same with each of the product's attributes
   "data":
   [
   {
-      "id": 1,
-      "description": "salad",
-      "price": 25,
-      "category": "food"
+     //product1 info
     },
     {
-      "id": 2,
-      "description": "beer",
-      "price": 25,
-      "category": "drinks"
+      //product2 info
     },
     ...
   ]
