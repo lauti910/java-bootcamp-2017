@@ -496,6 +496,7 @@ Commit your practice code.
       "bathroom":1
   },
   ... //the same with each of the product's attributes
+  ,
   "data":
   [
   {
