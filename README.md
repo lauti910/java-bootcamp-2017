@@ -481,8 +481,8 @@ Commit your practice code.
   
 ##### Practice: #####
 
-1. Create the REST layer for your shopping cart REST API. Use JAX-RS for it.
-2. Use Spring DI to inject necessary dependencies in your classes. Test REST and Service layers.
+1. Create the REST layer for your shopping cart REST API.
+2. Test REST and Service layers.
 3. Expose the shopping cart created in the topic 3.
 4. Write the swagger file for point 1 
 5. Create and document with swagger a REST API to register users. The API must provide: add, delete, update and find by name and find by nickname operations. Note that the username must be unique.
@@ -513,7 +513,7 @@ Commit your practice code.
   ]
 }
 
-Adjust your GET /product endpoint in order to return the list of products with this format.
+Adjust your REST layer in order to return the list of products with this format.
 
 ##### Key Points: #####
 
