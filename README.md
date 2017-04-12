@@ -476,6 +476,8 @@ Commit your practice code.
 5. [Spring boot - rest services guide](http://spring.io/guides/tutorials/bookmarks/)
 
 6. [REST API documentation](http://swagger.io/getting-started/)
+
+7. [Swagger and Spring Boot](http://kubecloud.io/guide-using-swagger-for-documenting-your-spring-boot-rest-api/)
   
 ##### Practice: #####
 
