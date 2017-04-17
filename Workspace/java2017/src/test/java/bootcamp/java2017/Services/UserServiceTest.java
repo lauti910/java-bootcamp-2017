@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import bootcamp.java2017.ClaseServices.Model.User;
-import bootcamp.java2017.ClaseServices.Model.Exceptions.UserNotFoundException;
-import bootcamp.java2017.ClaseServices.Service.UserService.UserService;
-import bootcamp.java2017.ClaseServices.ServiceImpl.UserService.UserServiceImpl;
+import bootcamp.java2017.FinalProyect.Model.User;
+import bootcamp.java2017.FinalProyect.Model.Exceptions.UserNotFoundException;
+import bootcamp.java2017.FinalProyect.Service.UserService.UserService;
+import bootcamp.java2017.FinalProyect.ServiceImpl.UserService.UserServiceImpl;
 
 public class UserServiceTest {
 	

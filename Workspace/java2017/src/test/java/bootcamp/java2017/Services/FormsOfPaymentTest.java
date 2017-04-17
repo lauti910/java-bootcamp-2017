@@ -6,15 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import bootcamp.java2017.ClaseServices.Model.User;
-import bootcamp.java2017.ClaseServices.Model.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.Item;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Items.ItemList;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.CashPayment;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.CreditCardPayment;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.FormOfPayment;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.PayPalPayment;
-import bootcamp.java2017.ClaseServices.Model.ShoppingCart.Payments.Ticket;
+import bootcamp.java2017.FinalProyect.Model.User;
+import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CreditCardPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.FormOfPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.PayPalPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.Ticket;
 
 public class FormsOfPaymentTest {
 
