@@ -9,11 +9,9 @@ import bootcamp.java2017.FinalProyect.Model.User;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
 
-@Entity
 public class CreditCardPayment implements FormOfPayment {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	
 	@Override
 	public Ticket pay(User user, Double price, ItemList items) throws NotEnoughMoneyException {
 		Double actualPrice = price - (price * 0.1);

@@ -78,18 +78,6 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public void setFormOfPayment(FormOfPayment payment, Integer cartId) {
-		this.session.openCurrentSessionwithTransaction();
-		
-		Cart cart = this.dao.getCart(cartId);
-		cart.setFormOfPayment(payment);
-		this.dao.update(cart);
-
-		this.session.closeCurrentSessionwithTransaction();
-
-	}
-
-	@Override
 	public ItemList getItems(Integer cartId) {
 		this.session.openCurrentSessionwithTransaction();
 		
@@ -101,11 +89,11 @@ public class ShoppingCartImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public Ticket pay(Integer cartId) throws NotEnoughMoneyException {
+	public Ticket pay(FormOfPayment formOfPayment, Integer cartId) throws NotEnoughMoneyException {
 		this.session.openCurrentSessionwithTransaction();
 		
 		Cart cart = this.dao.getCart(cartId);
-		Ticket ticket = cart.pay(this.getActualPrice(cartId));
+		Ticket ticket = cart.pay(this.getActualPrice(cartId), formOfPayment);
 		this.dao.update(cart);
 
 		this.session.closeCurrentSessionwithTransaction();

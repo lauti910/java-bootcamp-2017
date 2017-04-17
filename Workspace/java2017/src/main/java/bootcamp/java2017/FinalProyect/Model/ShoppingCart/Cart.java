@@ -1,5 +1,6 @@
 package bootcamp.java2017.FinalProyect.Model.ShoppingCart;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,24 +34,20 @@ import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.Ticket;
 
 @Entity
 @Table(name = "cart")
-public class Cart {
+public class Cart implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToMany(cascade = CascadeType.ALL, targetEntity = ItemBag.class)
-	@JoinColumn(name = "item_id")
+	@JoinColumn(name = "item_bag_id")
 	private List<ItemBag> items;
 
-	@ManyToOne
-	private FormOfPayment payment;
-
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade= CascadeType.ALL, targetEntity= User.class)
 	private User user;
 
 	public Cart(User user) {
 		this.items = new ArrayList<ItemBag>();
-		this.payment = new CashPayment();
 		this.user = user;
 	}
 
@@ -106,17 +103,12 @@ public class Cart {
 		return total - amountSavedWithOffers;
 	}
 
-	public void setFormOfPayment(FormOfPayment payment) {
-		this.payment = payment;
-		
-	}
-
 	public ItemList getItems() {
 		return new ItemList(this.items);
 	}
 
-	public Ticket pay(Double actualPrice) throws NotEnoughMoneyException {
-		Ticket ticket = this.payment.pay(user, actualPrice, this.getItems());
+	public Ticket pay(Double actualPrice, FormOfPayment formOfPayment) throws NotEnoughMoneyException {
+		Ticket ticket = formOfPayment.pay(user, actualPrice, this.getItems());
 		
 		this.items.clear();
 		

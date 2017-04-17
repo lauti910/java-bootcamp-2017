@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import bootcamp.java2017.FinalProyect.Model.User;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Cart;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemBag;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Offer.Offer;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CashPayment;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CreditCardPayment;
@@ -56,9 +57,7 @@ public class HibernateSession {
 		configuration.addAnnotatedClass(User.class);
 		configuration.addAnnotatedClass(Item.class);
 		configuration.addAnnotatedClass(Offer.class);
-		configuration.addAnnotatedClass(CashPayment.class);
-		configuration.addAnnotatedClass(CreditCardPayment.class);
-		configuration.addAnnotatedClass(PayPalPayment.class);
+		configuration.addAnnotatedClass(ItemBag.class);
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
 		return sessionFactory;

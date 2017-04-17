@@ -1,5 +1,6 @@
 package bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class ItemBag {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private Integer quantity;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity= Item.class)
 	private Item item;
 	
 	public ItemBag(Item item, Integer quantity){

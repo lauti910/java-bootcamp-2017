@@ -1,4 +1,4 @@
-package bootcamp.java2017.FinalProyect.DAO.Offer;
+package bootcamp.java2017.FinalProyect.DAO;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ public interface OffersDAO {
 	 * @param offer
 	 *            The offer to be saved
 	 */
-	public void save(Offer offer);
+	public void persist(Offer offer);
 
 	/**
 	 * 
 	 * @param offerName
-	 * @return the offer with name = offername
+	 * @return the offer with id = offerId
 	 */
-	public Offer get(String offerName);
+	public Offer getOffer(Integer offerId);
 
 	/**
 	 * 
@@ -33,4 +33,6 @@ public interface OffersDAO {
 	 *            The offer to be removed
 	 */
 	public void remove(Offer offer);
+	
+	public void update(Offer offer);
 }

@@ -54,19 +54,6 @@ public interface ShoppingCartAPI {
 	public Double getActualPrice(Integer cartId);
 
 	/**
-	 * Sets the form of payment to use to pay, in the cart with id == cartId. Default is cash
-	 * @param cartId
-	 *            the Id of the cart
-	 * @param payment
-	 *            the form of payment to be used
-	 * @see FormOfPayment
-	 * @see CashPayment
-	 * @see PayPalPayment
-	 * @see CreditCardPayment
-	 */
-	public void setFormOfPayment(FormOfPayment payment, Integer cartId);
-
-	/**
 	 * @param cartId
 	 *            the Id of the cart
 	 * @return a list of items that isn't modifiable
@@ -77,6 +64,8 @@ public interface ShoppingCartAPI {
 	/**
 	 * Pay for all the items you have in the cart
 	 * 
+	 * @param formOfPayment
+	 *            the form of payment
 	 * @param cartId
 	 *            the Id of the cart
 	 * @return a ticket with the information of the transaction
@@ -87,8 +76,8 @@ public interface ShoppingCartAPI {
 	 * @see FormOfPayment
 	 * @see Ticket
 	 */
-	public Ticket pay(Integer cartId) throws NotEnoughMoneyException;
-	
+	public Ticket pay(FormOfPayment formOfPayment, Integer cartId) throws NotEnoughMoneyException;
+
 	public Integer getCartIdOfTheUser(User user);
 
 }

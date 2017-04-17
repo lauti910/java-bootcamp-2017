@@ -29,7 +29,7 @@ public class Offer {
 	private Double price;
 	@ManyToOne(cascade=CascadeType.ALL, targetEntity= Item.class)
 	private Item item;
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Offer offer;
 	
 	public Offer(String name, Double price, Item item){
@@ -68,8 +68,17 @@ public class Offer {
 		return this.name;
 	}
 	
-	private Optional<Offer> getOffer(){
+	public Optional<Offer> getOffer(){
 		return Optional.ofNullable(this.offer);
+	}
+	
+	public Boolean contains(Offer offer){
+		//the offer i have is 'offer' or the offer i have contains 'offer'
+		return this.getOffer().filter(of -> of.getId() == offer.getId()).isPresent()
+				|| this.getOffer().map(of -> of.contains(offer)).orElse(false);
+	}
+	public Integer getId() {
+		return this.id;
 	}
 	
 }

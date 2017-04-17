@@ -40,19 +40,13 @@ public class ShoppingCartWebImpl implements ShoppingCartAPI {
 	}
 
 	@Override
-	public void setFormOfPayment(FormOfPayment payment, Integer cartId) {
-		this.web.setFormOfPayment(payment, cartId);
-		
-	}
-
-	@Override
 	public ItemList getItems(Integer cartId) {
 		return this.web.getItems(cartId);
 	}
 
 	@Override
-	public Ticket pay(Integer cartId) throws NotEnoughMoneyException {
-		return this.web.pay(cartId);
+	public Ticket pay(FormOfPayment formOfPayment, Integer cartId) throws NotEnoughMoneyException {
+		return this.web.pay(formOfPayment, cartId);
 	}
 
 	@Override

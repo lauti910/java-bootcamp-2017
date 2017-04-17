@@ -1,18 +1,11 @@
 package bootcamp.java2017.FinalProyect.Model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
-import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Cart;
-import bootcamp.java2017.FinalProyect.Service.ShoppingCart.ShoppingCartAPI;
-import bootcamp.java2017.FinalProyect.ServiceImpl.ShoppingCart.ShoppingCartImpl;
 
 @Entity
 @Table(name = "user")
@@ -32,6 +25,9 @@ public class User {
 	public User(String username, String password){
 		this.username = username;
 		this.password = password;
+		this.email = "";
+		this.fullName = "";
+		this.cardNumber = 0;
 	}
 	
 	public void setEmail(String email){

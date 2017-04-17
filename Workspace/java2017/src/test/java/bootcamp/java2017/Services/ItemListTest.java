@@ -10,33 +10,41 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemBag;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
 
 public class ItemListTest {
 	
 	ItemList itemList;
-	List<Item> arrayList;
+	List<ItemBag> arrayList;
 	Item item1;
 	Item item2;
 	Item item3;
+	ItemBag ib1;
+	ItemBag ib2;
+	ItemBag ib3;
 	@Before
 	public void setUp(){
 
 		this.item1 = Mockito.mock(Item.class);
 		this.item2 = Mockito.mock(Item.class);
 		this.item3 = Mockito.mock(Item.class);
-		this.arrayList = new ArrayList<Item>();
-		this.arrayList.add(item1);
-		this.arrayList.add(item2);
-		this.arrayList.add(item3);
+		this.ib1 = new ItemBag(item1, 1);
+		this.ib2 = new ItemBag(item2, 1);
+		this.ib3 = new ItemBag(item3, 1);
+		
+		this.arrayList = new ArrayList<ItemBag>();
+		this.arrayList.add(ib1);
+		this.arrayList.add(ib2);
+		this.arrayList.add(ib3);
 		this.itemList = new ItemList(this.arrayList);
 		
 	}
 
 	@Test
 	public void test_AnEmptyListIsEmpty_AndAListWithItemsIsnt(){
-		ItemList empty = new ItemList(new ArrayList<Item>());
+		ItemList empty = new ItemList(new ArrayList<ItemBag>());
 		
 		assertTrue(empty.isEmpty());
 		assertFalse(this.itemList.isEmpty());
