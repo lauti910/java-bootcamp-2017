@@ -19,8 +19,8 @@ public class UserServiceWebImpl implements UserService {
 	}
 
 	@Override
-	public User getUser(String username) throws UserNotFoundException {
-		return this.web.getUser(username);
+	public User getUser(String username, String password) throws UserNotFoundException {
+		return this.web.getUser(username, password);
 	}
 
 	@Override

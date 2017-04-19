@@ -1,5 +1,5 @@
 package bootcamp.java2017.FinalProyect.Model.Exceptions;
 
-public class UserNotFoundException extends Exception {
+public class UserNotFoundException extends RuntimeException {
 
 }

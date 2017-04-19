@@ -1,13 +1,15 @@
 package bootcamp.java2017.FinalProyect.ServiceImpl.ShoppingCart;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import bootcamp.java2017.FinalProyect.DAO.CartDAO;
 import bootcamp.java2017.FinalProyect.DAOImpl.CartDAOImpl;
-import bootcamp.java2017.FinalProyect.DAOImpl.HibernateSession;
 import bootcamp.java2017.FinalProyect.DAOImpl.OffersDAOImpl;
+import bootcamp.java2017.FinalProyect.DAOImpl.UserDAOImpl;
+import bootcamp.java2017.FinalProyect.DAOImpl.Session.Runner;
 import bootcamp.java2017.FinalProyect.Model.User;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
@@ -23,94 +25,90 @@ import bootcamp.java2017.FinalProyect.Service.ShoppingCart.ShoppingCartAPI;
 public class ShoppingCartImpl implements ShoppingCartAPI {
 
 	private CartDAO dao;
-	private HibernateSession session;
 	public ShoppingCartImpl() {
 		this.dao = new CartDAOImpl();
-		this.session = HibernateSession.getInstance();
 	}
 	
 	@Override
 	public void addItem(Item item, Integer cartId) {
-		this.session.openCurrentSessionwithTransaction();
-		
-		Cart cart = this.dao.getCart(cartId);
-		cart.addItem(item);
-		this.dao.update(cart);
-		
-		this.session.closeCurrentSessionwithTransaction();
+		Runner.runInSession(() -> {
+			Cart cart = this.dao.getCart(cartId).get();
+			cart.addItem(item);
+			this.dao.update(cart);
+			return null;
+		});
 	}
 
 	@Override
-	public void removeItem(Item item, Integer cartId) throws ItemNotFoundException {
-		this.session.openCurrentSessionwithTransaction();
+	public void removeItem(Item item, Integer cartId) throws ItemNotFoundException{
 		
-		Cart cart = this.dao.getCart(cartId);
-		cart.removeItem(item);
-		this.dao.update(cart);
-		
-		this.session.closeCurrentSessionwithTransaction();
+		Runner.runInSession(() -> {
+			Cart cart = this.dao.getCart(cartId).get();
+			cart.removeItem(item);
+			this.dao.update(cart);
+			return null;
+		});
 		
 	}
 
 	@Override
 	public Double getTotalPrice(Integer cartId) {
-		this.session.openCurrentSessionwithTransaction();
-		
-		Cart cart = this.dao.getCart(cartId);
-
-		this.session.closeCurrentSessionwithTransaction();
-		
-		return cart.getTotalPrice();
-		
+		return Runner.runInSession(() -> {
+			Cart cart = this.dao.getCart(cartId).get();
+			return cart.getTotalPrice();
+		});
 	}
 
 	@Override
 	public Double getActualPrice(Integer cartId) {
-		this.session.openCurrentSessionwithTransaction();
+		return Runner.runInSession(() -> {
+			Cart cart = this.dao.getCart(cartId).get();
+			List<Offer> offers = new OffersDAOImpl().getAll();
+			
+			return cart.getActualPrice(offers);
+		});
 		
-		Cart cart = this.dao.getCart(cartId);
-		List<Offer> offers = new OffersDAOImpl().getAll();
-
-		this.session.closeCurrentSessionwithTransaction();
 		
-		return cart.getActualPrice(offers);
 		
 	}
 
 	@Override
 	public ItemList getItems(Integer cartId) {
-		this.session.openCurrentSessionwithTransaction();
-		
-		Cart cart = this.dao.getCart(cartId);
+		return Runner.runInSession(() -> {
 
-		this.session.closeCurrentSessionwithTransaction();
-		
-		return cart.getItems();
+			Cart cart = this.dao.getCart(cartId).get();
+			
+			return cart.getItems();
+		});
 	}
 
 	@Override
 	public Ticket pay(FormOfPayment formOfPayment, Integer cartId) throws NotEnoughMoneyException {
-		this.session.openCurrentSessionwithTransaction();
+		return Runner.runInSession(() -> {
+			System.out.println("get cart with id:" + cartId);
+			Cart cart = this.dao.getCart(cartId).get();
+			Ticket ticket = cart.pay(this.getActualPrice(cartId), formOfPayment);
+			this.dao.update(cart);
+			
+			return ticket;
+		});
 		
-		Cart cart = this.dao.getCart(cartId);
-		Ticket ticket = cart.pay(this.getActualPrice(cartId), formOfPayment);
-		this.dao.update(cart);
-
-		this.session.closeCurrentSessionwithTransaction();
-		
-		return ticket;
 
 	}
 
 	@Override
 	public Integer getCartIdOfTheUser(User user) {
-		this.session.openCurrentSessionwithTransaction();
-		
-		Integer cartId = this.dao.getCartByUserId(user.getId()).getId();
-		
-		this.session.closeCurrentSessionwithTransaction();
-		
-		return cartId;
+		return Runner.runInSession(() -> {
+			Optional<Cart> opCart = this.dao.getCartByUserId(user.getId());
+			if( !opCart.isPresent()){
+				Cart cart = new Cart(user);
+				opCart = Optional.of(cart);
+				this.dao.persist(cart);
+				
+				System.out.println("Created cart with ID:" + opCart.get().getId());
+			}
+			return opCart.get().getId();
+		});
 	}
 
 }

@@ -16,14 +16,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 
 import bootcamp.java2017.FinalProyect.Model.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CashPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CreditCardPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.FormOfPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.FormOfPaymentFactory;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.PayPalPayment;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.Payments;
 import bootcamp.java2017.FinalProyect.Service.ShoppingCart.ShoppingCartAPI;
 
 @Controller
@@ -57,32 +65,21 @@ public class ShoppingCartREST {
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/items")
 	@ResponseBody
-	public ResponseEntity<?> addItem(@PathVariable("cartID") Integer id, @RequestBody(required = true) String itemJson) {
+	public ResponseEntity<?> addItem(@PathVariable("cartID") Integer id, @RequestBody(required = true) Item item) {
 
-		try {
-
-			Item item = this.mapper.readValue(itemJson, Item.class);
-			this.shoppingCart.addItem(item, id);
-
-			return ResponseEntity.ok().build();
-
-		} catch (Exception e) { // Possible exceptions:
-								// JsonParseException,JsonMappingException,
-								// IOException
-
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There is a problem in the item json");
-		}
+		this.shoppingCart.addItem(item, id);
+		return ResponseEntity.ok().build();
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/items")
 	@ResponseBody
-	public ResponseEntity<?> payItems(@PathVariable("cartID") Integer id) {
+	public ResponseEntity<?> payItems(@PathVariable("cartID") Integer id, @RequestBody(required = true) Payments formOfPayment) {
 		try {
-
-			this.shoppingCart.pay(id);
+			FormOfPayment payment = new FormOfPaymentFactory().getFormOfPayment(formOfPayment);
+			this.shoppingCart.pay(payment, id);
 			return ResponseEntity.ok().build();
+
 		} catch (NotEnoughMoneyException e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -100,9 +97,9 @@ public class ShoppingCartREST {
 			return ResponseEntity.ok().build();
 
 		} catch (ItemNotFoundException e) {
-			
+
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The cart doesnt have that item");
-			
+
 		} catch (Exception e) { // Possible exceptions:
 								// JsonParseException,JsonMappingException,
 								// IOException

@@ -19,47 +19,45 @@ public class UserServiceTest {
 	@Before
 	public void setUp(){
 		this.userService = new UserServiceImpl();
-		this.user = Mockito.mock(User.class);
+		this.user = new User("asd", "asd");
 		
 	}
 
 	@Test
 	public void test_YouCanCreateAndGetAnUser() throws UserNotFoundException{
-		Mockito.doReturn("lauti910").when(this.user).getUsername();
 		
 		this.userService.createUser(this.user);
-		assertEquals(this.userService.getUser("lauti910"), this.user); 
+		assertEquals(this.userService.getUser("asd", "asd").getId(), this.user.getId()); 
+		this.userService.removeUser(this.user);
 	}
 	
 	@Test(expected = UserNotFoundException.class)
 	public void test_IfYouTryToGetAnUserThatDoesntExist_ItThrowsAnException() throws UserNotFoundException{
-		this.userService.getUser("lala");
+		this.userService.getUser("lala", "lala");
 	}
 	
 	@Test
 	public void test_YouCanUpdateAnUser() throws UserNotFoundException{
-		Mockito.doReturn("lauti910").when(this.user).getUsername();
-		Mockito.doReturn("lauti910@gmail.com").when(this.user).getEmail();
+
+		this.userService.createUser(this.user);
 		
-		User updatedUser = Mockito.mock(User.class);
-		Mockito.doReturn("lauti910").when(updatedUser).getUsername();
-		Mockito.doReturn("lauti910@hotmail.com").when(updatedUser).getEmail();
+		this.user.setEmail("lauti910@gmail.com");
 		
 		// gmail -> hotmail
-		this.userService.createUser(this.user);
-		this.userService.updateUser(updatedUser);
+		this.userService.updateUser(this.user);
 		
-		assertEquals(this.userService.getUser("lauti910"), updatedUser);
+		assertEquals(this.userService.getUser("asd", "asd").getId(), this.user.getId());
+		
+		this.userService.removeUser(user);
 		
 	}
 	
 	@Test(expected= UserNotFoundException.class)
 	public void test_YouCanRemoveAnUser() throws UserNotFoundException{
-		Mockito.doReturn("lauti910").when(this.user).getUsername();
 		
 		this.userService.createUser(this.user);
 		this.userService.removeUser(this.user);
 
-		this.userService.getUser("lauti910");
+		this.userService.getUser("asd", "asd");
 	}
 }

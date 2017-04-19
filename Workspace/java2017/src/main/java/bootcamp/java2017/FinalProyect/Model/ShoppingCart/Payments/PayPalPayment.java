@@ -18,7 +18,10 @@ public class PayPalPayment implements FormOfPayment{
 		String email = user.getEmail();
 		String pass = user.getPassword(); //TODO: this is insecure, find another way
 		PaypalAccount paypal = new PaypalAccount(email,pass);
-		Double actualPrice = price - items.getCheapestItem().getPrice();
+		Double actualPrice = price;
+		if(!items.isEmpty()){
+			actualPrice = price - items.getCheapestItem().getPrice();
+		}
 		paypal.spend(actualPrice);
 		return new Ticket(items, price, actualPrice, "Paypal");
 		

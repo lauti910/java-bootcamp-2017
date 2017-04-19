@@ -19,8 +19,8 @@ public class UserServiceProxy implements UserService{
 	}
 
 	@Override
-	public User getUser(String username) throws UserNotFoundException {
-		return this.impl.getUser(username);
+	public User getUser(String username, String password) throws UserNotFoundException {
+		return this.impl.getUser(username, password);
 	}
 
 	@Override

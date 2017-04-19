@@ -1,11 +1,13 @@
 package bootcamp.java2017.FinalProyect.DAO;
 
+import java.util.Optional;
+
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Cart;
 
 public interface CartDAO {
 	
-	public Cart getCart(Integer cartId);
-	public Cart getCartByUserId(Integer userId);
+	public Optional<Cart> getCart(Integer cartId);
+	public Optional<Cart> getCartByUserId(Integer userId);
 	
 	public void persist(Cart cart);
 	

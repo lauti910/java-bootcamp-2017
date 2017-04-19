@@ -19,6 +19,7 @@ public class Item{
 	@Enumerated(value=EnumType.STRING)
 	private Category category;
 	
+	protected Item(){}
 	public Item(Double price, String name, Category category){
 		this.price = price;
 		this.name = name;
@@ -31,6 +32,10 @@ public class Item{
 
 	public String getName() {
 		return this.name;
+	}
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return this.id;
 	}
 
 }

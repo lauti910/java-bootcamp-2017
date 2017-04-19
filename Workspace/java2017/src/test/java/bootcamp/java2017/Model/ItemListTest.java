@@ -1,4 +1,4 @@
-package bootcamp.java2017.Services;
+package bootcamp.java2017.Model;
 
 import static org.junit.Assert.*;
 

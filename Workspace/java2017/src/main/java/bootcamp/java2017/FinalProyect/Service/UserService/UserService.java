@@ -22,7 +22,7 @@ public interface UserService {
 	 * @throws UserNotFoundException
 	 *             in case no such user exist, or the password is wrong
 	 */
-	public User getUser(String username) throws UserNotFoundException;
+	public User getUser(String username, String password) throws UserNotFoundException;
 
 	/**
 	 * 

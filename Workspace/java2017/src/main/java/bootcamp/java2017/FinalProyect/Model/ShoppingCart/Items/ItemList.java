@@ -16,7 +16,7 @@ public class ItemList {
 	}
 
 	public Boolean contains(Item item) {
-		return items.contains(item);
+		return items.stream().anyMatch(i -> i.getId() == item.getId());
 	}
 
 	

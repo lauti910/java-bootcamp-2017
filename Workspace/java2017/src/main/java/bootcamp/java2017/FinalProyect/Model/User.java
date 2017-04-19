@@ -20,7 +20,7 @@ public class User {
 	private String fullName;
 	private Integer cardNumber;
 	
-	
+	protected User(){}
 	
 	public User(String username, String password){
 		this.username = username;

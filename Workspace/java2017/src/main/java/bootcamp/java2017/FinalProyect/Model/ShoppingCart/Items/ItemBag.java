@@ -18,6 +18,7 @@ public class ItemBag {
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity= Item.class)
 	private Item item;
 	
+	protected ItemBag(){}
 	public ItemBag(Item item, Integer quantity){
 		this.item = item;
 		this.quantity = quantity;

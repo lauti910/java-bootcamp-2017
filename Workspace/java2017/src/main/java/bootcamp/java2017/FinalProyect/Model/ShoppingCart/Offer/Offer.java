@@ -32,6 +32,7 @@ public class Offer {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Offer offer;
 	
+	protected Offer(){}
 	public Offer(String name, Double price, Item item){
 		this.name = name;
 		this.price = price;

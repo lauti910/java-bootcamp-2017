@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,9 +44,10 @@ public class Cart implements Serializable{
 	@JoinColumn(name = "item_bag_id")
 	private List<ItemBag> items;
 
-	@OneToOne(cascade= CascadeType.ALL, targetEntity= User.class)
+	@OneToOne(cascade= {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH}, targetEntity= User.class)
 	private User user;
-
+	
+	protected Cart(){}
 	public Cart(User user) {
 		this.items = new ArrayList<ItemBag>();
 		this.user = user;
@@ -74,7 +76,7 @@ public class Cart implements Serializable{
 	private Optional<ItemBag> getBagOfTheItem(Item item) {
 		Optional<ItemBag> op = Optional.empty();
 		for(ItemBag ib: this.items){
-			if(ib.getItem().getName() == item.getName()){
+			if(ib.getItem().getName().equals(item.getName())){
 				op = Optional.of(ib);
 				break;
 			}
@@ -85,7 +87,9 @@ public class Cart implements Serializable{
 	public Double getTotalPrice() {
 		Double sum = (double) 0;
 		for(ItemBag bag: this.items){
-			sum =  sum + bag.getItem().getPrice() * bag.getQuantity();
+			sum =  sum 
+					+ bag.getItem().getPrice() 
+					* bag.getQuantity();
 		}
 		return sum;
 	}
