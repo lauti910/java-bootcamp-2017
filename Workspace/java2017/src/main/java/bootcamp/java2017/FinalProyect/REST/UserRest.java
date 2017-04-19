@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import bootcamp.java2017.FinalProyect.DTO.UserDTO;
 import bootcamp.java2017.FinalProyect.Model.User;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.DuplicatedUserException;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.UserNotFoundException;
@@ -29,7 +30,7 @@ public class UserRest {
 	@Autowired
 	private ShoppingCartAPI cartService;
 
-	@RequestMapping(method = RequestMethod.GET, path="/{id}")
+	@RequestMapping(method = RequestMethod.GET, path="/{id}/cart")
 	@ResponseBody
 	public ResponseEntity<?> getCartOfTheUser(@PathVariable(name="id") Integer id) {
 
@@ -37,12 +38,30 @@ public class UserRest {
 			User user = service.getUserById(id);
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/{cartId}/items")
 					.buildAndExpand(cartService.getCartIdOfTheUser(user)).toUri();
-			return ResponseEntity.ok(location);
+			return ResponseEntity.ok("location: " + location);
 
 		} catch (UserNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	@RequestMapping(method = RequestMethod.GET, path="/{id}")
+	@ResponseBody
+	public ResponseEntity<?> getUser(@PathVariable(name="id") Integer id) {
+
+		try {
+			User user = service.getUserById(id);
+			UserDTO dto = new UserDTO();
+			dto.setUsername(user.getUsername());
+			dto.setFullName(user.getName());
+			dto.setEmail(user.getEmail());
+			dto.setId(user.getId());
+			return ResponseEntity.ok(dto);
+
+		} catch (UserNotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseBody
@@ -66,6 +85,21 @@ public class UserRest {
 			User updatedUser = service.getUser(user.getUsername(), user.getPassword());
 			service.updateUser(updatedUser);
 			return ResponseEntity.ok("id: " + updatedUser.getId());
+		}catch(UserNotFoundException e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+	@RequestMapping(method = RequestMethod.POST, path="/{id}")
+	@ResponseBody
+	public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable(name="id") Integer id) {
+		try{
+			User userUpdated = service.getUserById(id);
+			userUpdated.setCardNumber(user.getCardNumber());
+			userUpdated.setEmail(user.getEmail());
+			userUpdated.setName(user.getName());
+			userUpdated.setUsername(user.getUsername());
+			service.updateUser(userUpdated);
+			return ResponseEntity.ok(userUpdated);
 		}catch(UserNotFoundException e){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}

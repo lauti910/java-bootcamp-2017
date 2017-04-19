@@ -1,6 +1,7 @@
 package bootcamp.java2017.FinalProyect.REST;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.websocket.server.PathParam;
 
@@ -21,9 +22,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 
+import bootcamp.java2017.FinalProyect.DTO.ItemsDTO;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.ItemNotFoundException;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.NotEnoughMoneyException;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
+import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemBag;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.Item;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items.ItemList;
 import bootcamp.java2017.FinalProyect.Model.ShoppingCart.Payments.CashPayment;
@@ -51,16 +54,12 @@ public class ShoppingCartREST {
 	@ResponseBody
 	public ResponseEntity<?> getItems(@PathVariable("cartID") Integer id) {
 
-		try {
-
-			ItemList items = shoppingCart.getItems(id);
-			String json = this.mapper.writeValueAsString(items);
-
-			return ResponseEntity.ok(json);
-
-		} catch (JsonProcessingException e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The items werent transformed to json");
-		}
+		ItemList items = shoppingCart.getItems(id);
+		ItemsDTO dto = new ItemsDTO();
+		List<ItemBag> list = items.getUnmodifiableList();
+		dto.setItems(list);
+		
+		return ResponseEntity.ok(dto);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, path = "/items")

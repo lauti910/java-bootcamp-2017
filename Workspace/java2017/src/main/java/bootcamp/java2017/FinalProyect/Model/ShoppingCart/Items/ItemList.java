@@ -6,23 +6,20 @@ import java.util.List;
 
 public class ItemList {
 	
-	private List<Item> items;
+	private List<ItemBag> items;
 
 	public ItemList(List<ItemBag> items) {
-		this.items = new ArrayList<Item>();
-		for(ItemBag bag: items){
-			this.items.add(bag.getItem());
-		}
+		this.items = items;
 	}
 
 	public Boolean contains(Item item) {
-		return items.stream().anyMatch(i -> i.getId() == item.getId());
+		return items.stream().anyMatch(i -> i.getItem().getId() == item.getId());
 	}
 
 	
 	public void show() {
-		for(Item i: this.items){
-			System.out.println(i.getName() + "......" + i.getPrice());
+		for(ItemBag i: this.items){
+			System.out.println(i.getItem().getName() + "......" + i.getItem().getPrice() + " x" + i.getQuantity());
 		}
 
 	}
@@ -34,14 +31,18 @@ public class ItemList {
 
 	
 	public Item getCheapestItem() {
-		Collections.sort(this.items, (i1, i2) -> i1.getPrice().compareTo(i2.getPrice()));
-		return this.items.get(0);
+		Collections.sort(this.items, (i1, i2) -> i1.getItem().getPrice().compareTo(i2.getItem().getPrice()));
+		return this.items.get(0).getItem();
 	}
 
 	
 	public Item getMostExpensiveItem() {
-		Collections.sort(this.items, (i1, i2) -> i1.getPrice().compareTo(i2.getPrice()));
-		return this.items.get(this.items.size() - 1);
+		Collections.sort(this.items, (i1, i2) -> i1.getItem().getPrice().compareTo(i2.getItem().getPrice()));
+		return this.items.get(this.items.size() - 1).getItem();
+	}
+
+	public List<ItemBag> getUnmodifiableList() {
+		return Collections.unmodifiableList(this.items);
 	}
 
 }

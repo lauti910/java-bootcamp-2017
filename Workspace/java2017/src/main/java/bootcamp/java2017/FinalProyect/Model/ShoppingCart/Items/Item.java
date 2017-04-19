@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="item")
 public class Item{
@@ -33,9 +35,13 @@ public class Item{
 	public String getName() {
 		return this.name;
 	}
+	@JsonIgnore
 	public Integer getId() {
 		// TODO Auto-generated method stub
 		return this.id;
+	}
+	public Category getCategory() {
+		return this.category;
 	}
 
 }

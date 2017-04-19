@@ -10,6 +10,7 @@ import bootcamp.java2017.FinalProyect.DAO.UserDAO;
 import bootcamp.java2017.FinalProyect.DAOImpl.UserDAOImpl;
 import bootcamp.java2017.FinalProyect.DAOImpl.Session.Runner;
 import bootcamp.java2017.FinalProyect.Model.User;
+import bootcamp.java2017.FinalProyect.Model.Exceptions.DuplicatedUserException;
 import bootcamp.java2017.FinalProyect.Model.Exceptions.UserNotFoundException;
 import bootcamp.java2017.FinalProyect.Service.UserService.UserService;
 
@@ -25,9 +26,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void createUser(User user) {
+	public void createUser(User user) throws DuplicatedUserException{
 		Runner.runInSession(() -> {
-			this.dao.persist(user);
+			Optional<User> opUser = this.dao.getUserByUsername(user.getUsername());
+			if(opUser.isPresent()){
+				throw new DuplicatedUserException();
+			}else{
+				this.dao.persist(user);
+			}
 			return null;
 		});
 

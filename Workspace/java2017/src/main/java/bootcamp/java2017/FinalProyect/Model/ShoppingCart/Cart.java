@@ -2,6 +2,7 @@ package bootcamp.java2017.FinalProyect.Model.ShoppingCart;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToMany(cascade = CascadeType.ALL, targetEntity = ItemBag.class)
+	@ManyToMany(cascade = CascadeType.ALL, targetEntity = ItemBag.class, fetch=FetchType.EAGER)
 	@JoinColumn(name = "item_bag_id")
 	private List<ItemBag> items;
 
@@ -121,5 +122,9 @@ public class Cart implements Serializable{
 
 	public Integer getId() {
 		return this.id;
+	}
+	
+	public List<ItemBag> getUnmodifiableListOfItemBags(){
+		return Collections.unmodifiableList(this.items);
 	}
 }

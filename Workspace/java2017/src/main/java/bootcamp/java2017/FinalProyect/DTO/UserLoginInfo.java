@@ -1,4 +1,4 @@
-package bootcamp.java2017.FinalProyect.REST;
+package bootcamp.java2017.FinalProyect.DTO;
 
 public class UserLoginInfo {
 	private String username;

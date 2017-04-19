@@ -41,6 +41,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void persist(User user) {
 		Runner.runInSession(() -> {
+			
 			Runner.getCurrentSession().persist(user);
 			return null;
 			
@@ -65,6 +66,20 @@ public class UserDAOImpl implements UserDAO{
 			
 		});
 		
+	}
+
+	@Override
+	public Optional<User> getUserByUsername(String username) {
+		return Runner.runInSession(() ->{
+			Query<User> query = Runner.getCurrentSession().createQuery("FROM User U Where U.username = :user");
+			query.setParameter("user", username);
+			try{
+
+				return Optional.of(query.getSingleResult());
+			}catch(NoResultException e){
+				return Optional.empty();
+			}
+		});
 	}
 
 }
