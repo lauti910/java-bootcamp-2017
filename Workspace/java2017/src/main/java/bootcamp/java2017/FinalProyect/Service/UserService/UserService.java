@@ -38,4 +38,14 @@ public interface UserService {
 	 *            the user to be removed
 	 */
 	public void removeUser(User user);
+
+	/**
+	 * 
+	 * @param id
+	 *            The id of the user
+	 * @return The user with user.id == id
+	 * @throws UserNotFoundException
+	 *             in case no such user exist, or the password is wrong
+	 */
+	public User getUserById(Integer id) throws UserNotFoundException;
 }

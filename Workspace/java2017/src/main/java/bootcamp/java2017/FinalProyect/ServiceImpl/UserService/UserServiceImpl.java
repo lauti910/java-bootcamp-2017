@@ -63,4 +63,11 @@ public class UserServiceImpl implements UserService {
 		});
 	}
 
+	@Override
+	public User getUserById(Integer id) throws UserNotFoundException {
+		return Runner.runInSession(() -> {
+			return this.dao.getUser(id).orElseThrow(()-> new UserNotFoundException());
+		});
+	}
+
 }

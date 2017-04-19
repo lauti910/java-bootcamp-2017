@@ -35,4 +35,9 @@ public class UserServiceWebImpl implements UserService {
 		
 	}
 
+	@Override
+	public User getUserById(Integer id) throws UserNotFoundException {
+		return this.web.getUserById(id);
+	}
+
 }

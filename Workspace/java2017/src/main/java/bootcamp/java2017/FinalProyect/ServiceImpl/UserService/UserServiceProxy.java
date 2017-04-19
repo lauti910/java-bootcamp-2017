@@ -35,4 +35,9 @@ public class UserServiceProxy implements UserService{
 		
 	}
 
+	@Override
+	public User getUserById(Integer id) throws UserNotFoundException {
+		return this.impl.getUserById(id);
+	}
+
 }
