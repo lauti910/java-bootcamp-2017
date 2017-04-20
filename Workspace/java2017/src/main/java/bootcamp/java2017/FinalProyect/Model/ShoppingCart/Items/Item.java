@@ -1,5 +1,6 @@
 package bootcamp.java2017.FinalProyect.Model.ShoppingCart.Items;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

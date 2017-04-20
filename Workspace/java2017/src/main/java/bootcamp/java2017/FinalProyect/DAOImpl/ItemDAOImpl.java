@@ -27,7 +27,7 @@ public class ItemDAOImpl implements ItemDAO {
 			}
 		});
 	}
-
+	
 	@Override
 	public void persist(Item item) {
 		Runner.runInSession(() -> {

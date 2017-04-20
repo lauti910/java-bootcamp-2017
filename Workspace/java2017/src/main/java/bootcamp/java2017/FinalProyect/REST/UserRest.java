@@ -22,7 +22,7 @@ import bootcamp.java2017.FinalProyect.Service.UserService.UserService;
 
 @Controller
 @RequestMapping("/users")
-public class UserRest {
+public class UserREST {
 
 	@Autowired
 	private UserService service;
@@ -75,18 +75,6 @@ public class UserRest {
 			return ResponseEntity.created(location).build();
 		}catch(DuplicatedUserException e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("There is already an user with that username");
-		}
-	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<?> login(@RequestBody User user) {
-		try{
-			User updatedUser = service.getUser(user.getUsername(), user.getPassword());
-			service.updateUser(updatedUser);
-			return ResponseEntity.ok("id: " + updatedUser.getId());
-		}catch(UserNotFoundException e){
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The username or password is wrong");
 		}
 	}
 	@RequestMapping(method = RequestMethod.POST, path="/{id}")
