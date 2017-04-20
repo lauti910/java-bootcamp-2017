@@ -43,5 +43,16 @@ public class Item{
 	public Category getCategory() {
 		return this.category;
 	}
+	public void setCategory(Category category) {
+		this.category = category;
+		
+	}
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
 }

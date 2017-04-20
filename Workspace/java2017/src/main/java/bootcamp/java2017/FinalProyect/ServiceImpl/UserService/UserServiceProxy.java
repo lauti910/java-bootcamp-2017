@@ -40,4 +40,9 @@ public class UserServiceProxy implements UserService{
 		return this.impl.getUserById(id);
 	}
 
+	@Override
+	public User getByUsername(String username) throws UserNotFoundException {
+		return this.impl.getByUsername(username);
+	}
+
 }

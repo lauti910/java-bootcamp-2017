@@ -15,7 +15,10 @@ public class CashPayment implements FormOfPayment {
 
 	@Override
 	public Ticket pay(User user, Double price, ItemList items) throws NotEnoughMoneyException {
-		Double actualPrice = price - items.getMostExpensiveItem().getPrice() * 0.9;
+		Double actualPrice = price;
+		if(!items.isEmpty()){
+			actualPrice = price - items.getMostExpensiveItem().getPrice() * 0.9;
+		}
 		return new Ticket(items, price, actualPrice, "Cash");
 	}
 

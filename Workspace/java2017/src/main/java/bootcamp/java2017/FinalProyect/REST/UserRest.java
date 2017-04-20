@@ -38,7 +38,7 @@ public class UserRest {
 			User user = service.getUserById(id);
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/{cartId}/items")
 					.buildAndExpand(cartService.getCartIdOfTheUser(user)).toUri();
-			return ResponseEntity.ok("location: " + location);
+			return ResponseEntity.status(HttpStatus.FOUND).body(location);
 
 		} catch (UserNotFoundException e) {
 			return ResponseEntity.notFound().build();
@@ -74,7 +74,7 @@ public class UserRest {
 
 			return ResponseEntity.created(location).build();
 		}catch(DuplicatedUserException e){
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("There is already an user with that username");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("There is already an user with that username");
 		}
 	}
 
@@ -86,7 +86,7 @@ public class UserRest {
 			service.updateUser(updatedUser);
 			return ResponseEntity.ok("id: " + updatedUser.getId());
 		}catch(UserNotFoundException e){
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The username or password is wrong");
 		}
 	}
 	@RequestMapping(method = RequestMethod.POST, path="/{id}")

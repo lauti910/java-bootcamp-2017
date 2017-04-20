@@ -73,7 +73,7 @@ public class ShoppingCartREST {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/items")
 	@ResponseBody
-	public ResponseEntity<?> payItems(@PathVariable("cartID") Integer id, @RequestBody(required = true) Payments formOfPayment) {
+	public ResponseEntity<?> payItems(@PathVariable("cartID") Integer id, @RequestBody Payments formOfPayment) {
 		try {
 			FormOfPayment payment = new FormOfPaymentFactory().getFormOfPayment(formOfPayment);
 			this.shoppingCart.pay(payment, id);
@@ -87,10 +87,8 @@ public class ShoppingCartREST {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, path = "/items")
-	public ResponseEntity<?> deleteItem(@PathVariable("cartID") Integer id, @RequestBody(required = true) String itemJson) {
+	public ResponseEntity<?> deleteItem(@PathVariable("cartID") Integer id, @RequestBody(required = true) Item item) {
 		try {
-
-			Item item = this.mapper.readValue(itemJson, Item.class);
 			this.shoppingCart.removeItem(item, id);
 
 			return ResponseEntity.ok().build();
@@ -99,11 +97,6 @@ public class ShoppingCartREST {
 
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The cart doesnt have that item");
 
-		} catch (Exception e) { // Possible exceptions:
-								// JsonParseException,JsonMappingException,
-								// IOException
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There is a problem in the item json");
-		}
+		} 
 	}
 }

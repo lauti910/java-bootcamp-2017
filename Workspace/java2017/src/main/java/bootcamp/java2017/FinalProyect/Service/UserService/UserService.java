@@ -48,4 +48,13 @@ public interface UserService {
 	 *             in case no such user exist, or the password is wrong
 	 */
 	public User getUserById(Integer id) throws UserNotFoundException;
+	/**
+	 * 
+	 * @param username
+	 *            the username of the user
+	 * @return The user with user.username == username
+	 * @throws UserNotFoundException
+	 *             in case no such user exist, or the password is wrong
+	 */
+	public User getByUsername(String username) throws UserNotFoundException;
 }
